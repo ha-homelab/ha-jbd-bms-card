@@ -1,0 +1,16 @@
+{
+  "name": "ha-jbd-bms-card",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Colorful read-only Home Assistant battery and individual-cell card",
+  "license": "MIT",
+  "scripts": {
+    "check": "node --check ha-jbd-bms-card.js",
+    "test": "node --test",
+    "build": "node scripts/build.mjs"
+  },
+  "devDependencies": {
+    "happy-dom": "21.0.4"
+  }
+}

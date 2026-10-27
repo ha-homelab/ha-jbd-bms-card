@@ -1,0 +1,6 @@
+{
+  "name": "JBD Battery & Cell Card",
+  "content_in_root": true,
+  "filename": "ha-jbd-bms-card.js",
+  "homeassistant": "2026.9.1"
+}
