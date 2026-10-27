@@ -38,6 +38,9 @@ That revision includes the reviewed hosted Ubuntu dependency-installation fix.
 Its runtime verification records the actual OS, browser engine/version,
 Playwright version, source commit and workflow attempt. The application adds
 the tested JavaScript SHA-256 and the successful scenario names.
+Checkout preserves LF line endings on every platform; the test compares the
+served JavaScript with its Git blob before launching a browser, so Windows
+cannot silently validate a CRLF-transformed copy.
 
 Each target uploads `browser-compatibility-<target>-<attempt>` artifacts for
 14 days, including its runtime/result receipts and synthetic screenshots and

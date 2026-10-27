@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { verifyBrowserCoverage } from "./check-browser-coverage.mjs";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
+assert.match(read(".gitattributes"), /^\* text=auto eol=lf$/m, "Keep the same distributable bytes on Windows and Unix");
 const targets = JSON.parse(read(".github/browser-compatibility.json"));
 const expected = [
   ["ubuntu-latest", "chromium", "156.0.8078.4"],

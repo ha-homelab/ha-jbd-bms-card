@@ -6,6 +6,7 @@ const http = require('node:http');
 const path = require('node:path');
 const { once } = require('node:events');
 const { createHash } = require('node:crypto');
+const { execFileSync } = require('node:child_process');
 
 async function main() {
   for (const variable of ['CI_PLAYWRIGHT_MODULE', 'CI_BROWSER_ENGINE', 'CI_BROWSER_DIAGNOSTICS', 'CI_BROWSER_EVIDENCE']) {
@@ -20,6 +21,8 @@ async function main() {
   const source = fs.readFileSync(path.join(__dirname, '../ha-jbd-bms-card.js'));
   const fixture = fs.readFileSync(path.join(__dirname, '../test/fixtures/browser.html'));
   const sourceSha256 = createHash('sha256').update(source).digest('hex');
+  const trackedSource = execFileSync('git', ['show', 'HEAD:ha-jbd-bms-card.js'], {cwd:path.join(__dirname, '..')});
+  assert.equal(sourceSha256, createHash('sha256').update(trackedSource).digest('hex'), 'Browser fixture must serve the exact tracked distributable bytes, including on Windows');
   const server = http.createServer((request, response) => {
     response.setHeader('Cache-Control', 'no-store');
     if (request.method === 'GET' && request.url === '/') {
