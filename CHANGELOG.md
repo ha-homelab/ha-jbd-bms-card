@@ -9,6 +9,7 @@
 - Add deterministic translation generation and tests for every language, safe interpolation, regional fallback and live profile changes.
 - Add installation and configuration guides in all 24 supported languages, plus HACS publishing, ESPHome deployment and Echo Dot Bluetooth compatibility documentation.
 - Require official HACS plugin validation and documentation link checks in CI.
+- Exercise the distributable in five required browser/OS targets using synthetic data, with recorded runtime identities, failure diagnostics and complete-coverage enforcement in CI.
 
 ## 0.1.0
 

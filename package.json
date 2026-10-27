@@ -10,7 +10,8 @@
     "test": "node --test",
     "build": "node scripts/build.mjs",
     "i18n": "node scripts/build-i18n.mjs",
-    "check:docs": "node scripts/check-docs.mjs"
+    "check:docs": "node scripts/check-docs.mjs",
+    "check:ci": "node --check scripts/browser-acceptance.cjs && node scripts/check-browser-contracts.mjs"
   },
   "devDependencies": {
     "happy-dom": "21.0.4"
