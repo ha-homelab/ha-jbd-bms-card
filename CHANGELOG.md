@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.0
+
+- Add 24 complete, bundled language packs with English canonical source and fallback.
+- Follow the Home Assistant profile automatically; support optional card overrides and regional Chinese/script mappings.
+- Localize labels, default names, status, configuration errors, picker description and accessibility text.
+- Add Arabic, Persian and Hebrew RTL layout with isolated numeric values and units.
+- Add deterministic translation generation and tests for every language, safe interpolation, regional fallback and live profile changes.
+- Add installation and configuration guides in all 24 supported languages, plus HACS publishing, ESPHome deployment and Echo Dot Bluetooth compatibility documentation.
+- Require official HACS plugin validation and documentation link checks in CI.
+
 ## 0.1.0
 
 - Responsive battery overview with charge rings, voltage, optional current/power/temperature, and individual cell voltage bars.

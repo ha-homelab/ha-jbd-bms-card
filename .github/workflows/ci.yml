@@ -24,18 +24,32 @@ jobs:
           cache: npm
       - run: npm ci --ignore-scripts
       - run: npm run check
+      - run: npm run check:docs
       - run: npm test
       - run: npm run build
       - name: Check HACS package
         run: node scripts/check-package.mjs
+  hacs:
+    name: HACS validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Validate Dashboard repository
+        uses: hacs/action@1ebf01c408f29afcb6406bd431bc98fd8cbb15aa # verified upstream main
+        with:
+          category: plugin
+          comment: false
   gate:
     name: CI gate
     if: always()
-    needs: [checks]
+    needs: [checks, hacs]
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
       - name: Require all checks
         env:
           CHECKS_RESULT: ${{ needs.checks.result }}
-        run: test "$CHECKS_RESULT" = success
+          HACS_RESULT: ${{ needs.hacs.result }}
+        run: |
+          test "$CHECKS_RESULT" = success
+          test "$HACS_RESULT" = success
