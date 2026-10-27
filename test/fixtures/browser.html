@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Synthetic JBD browser acceptance</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root { color-scheme:light; --primary-text-color:#172238; --secondary-text-color:#66758c; --divider-color:#bcc8d64d; --card-background-color:#fff; background:#edf2f8; }
+    :root.dark { color-scheme:dark; --primary-text-color:#e6edf8; --secondary-text-color:#8b9bb4; --divider-color:#8ea5ce24; --card-background-color:#111d30; background:#0b1423; }
+    body { margin:0; padding:8px; font-family:system-ui,sans-serif; }
+  </style>
+</head>
+<body>
+  <script type="module">
+    import '/ha-jbd-bms-card.js';
+    const state = (value, unit) => ({state:String(value), attributes:{unit_of_measurement:unit}});
+    const fixture = window.fixture = {events:[], commands:[]};
+    fixture.reset = () => {
+      fixture.events.length = 0;
+      fixture.commands.length = 0;
+      const states = {};
+      const batteries = Array.from({length:8}, (_, index) => {
+        const number = index + 1;
+        const prefix = `sensor.fixture_b${number}_`;
+        const battery = {name:`Synthetic battery ${number}`, subtitle:`Synthetic chain ${index < 4 ? 1 : 2}`, cells:[]};
+        for (const [key, value, unit] of [
+          ['soc', index === 0 ? 0 : 60 + index, '%'], ['voltage', 13.22, 'V'],
+          ['current', -2.5, 'A'], ['power', -33, 'W'], ['temperature', 24.5, '°C'],
+        ]) {
+          battery[key] = prefix + key;
+          states[battery[key]] = state(value, unit);
+        }
+        battery.availability = `binary_sensor.fixture_b${number}_online`;
+        states[battery.availability] = state('on');
+        [3.3, 3.31, 3.32, 3.3].forEach((value, cell) => {
+          const entity = prefix + `cell_${cell + 1}`;
+          battery.cells.push(entity);
+          states[entity] = state(cell === 1 ? value * 1000 : value, cell === 1 ? 'mV' : 'V');
+        });
+        return battery;
+      });
+      fixture.config = {type:'custom:ha-jbd-bms-card', batteries};
+      const forbidden = (...args) => {fixture.commands.push(args); throw Error('Unexpected device command in read-only card');};
+      fixture.hass = {states, locale:{language:'en'}, language:'en', callService:forbidden, callWS:forbidden};
+      fixture.card = document.createElement('ha-jbd-bms-card');
+      fixture.card.addEventListener('hass-more-info', event => fixture.events.push(event.detail.entityId));
+      fixture.card.setConfig(fixture.config);
+      fixture.card.hass = fixture.hass;
+      document.body.replaceChildren(fixture.card);
+      document.documentElement.classList.remove('dark');
+    };
+    fixture.update = (entity, value, unit) => {
+      const previous = fixture.hass.states[entity];
+      fixture.hass = {...fixture.hass, states:{...fixture.hass.states}};
+      if (value === null) delete fixture.hass.states[entity];
+      else fixture.hass.states[entity] = state(value, unit ?? previous?.attributes?.unit_of_measurement);
+      fixture.card.hass = fixture.hass;
+    };
+    fixture.language = value => {
+      fixture.hass = {...fixture.hass, locale:{language:value}};
+      fixture.card.hass = fixture.hass;
+    };
+    fixture.override = value => {
+      fixture.config = {...fixture.config, language:value};
+      fixture.card.setConfig(fixture.config);
+    };
+    fixture.reset();
+    fixture.ready = true;
+  </script>
+</body>
+</html>

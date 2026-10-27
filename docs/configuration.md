@@ -3,8 +3,8 @@
 ## Top level
 
 - `type`: `custom:ha-jbd-bms-card`.
-- `title`: optional heading; defaults to “Battery atlas” / “Атлас батарей”.
-- `language`: optional `en` or `ru`; otherwise follows HA (Russian or English fallback).
+- `title`: optional literal heading; defaults to the localized “Battery atlas”.
+- `language`: optional locale override, for example `en`, `de`, `fr-CA`, or `zh-Hant`. Omit it or use `auto` to follow the Home Assistant profile. All 24 [language packs and selection rules](i18n.md) are documented separately. Unsupported languages fall back to English.
 - `batteries`: 1–32 pack configurations.
 - `thresholds`: optional defaults for every pack, with per-pack overrides.
 

@@ -10,6 +10,18 @@ concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  browser-compatibility:
+    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/typescript-ci.yml@94b1116449af128810b86f4c0c723602be17b372
+    with:
+      node-version: '24'
+      force-full: true
+      run-node-ci: false
+      browser-matrix-file: .github/browser-compatibility.json
+      browser-platform-scope: all
+      browser-required-profile: baseline
+      browser-extended: false
+      browser-prepare-command: npm ci --ignore-scripts
+      browser-test-command: node scripts/browser-acceptance.cjs
   checks:
     name: Tests and package
     runs-on: ubuntu-latest
@@ -24,18 +36,39 @@ jobs:
           cache: npm
       - run: npm ci --ignore-scripts
       - run: npm run check
+      - run: npm run check:docs
+      - run: npm run check:ci
       - run: npm test
       - run: npm run build
       - name: Check HACS package
         run: node scripts/check-package.mjs
+  hacs:
+    name: HACS validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Validate Dashboard repository
+        uses: hacs/action@1ebf01c408f29afcb6406bd431bc98fd8cbb15aa # verified upstream main
+        with:
+          category: plugin
+          comment: false
   gate:
     name: CI gate
     if: always()
-    needs: [checks]
+    needs: [checks, hacs, browser-compatibility]
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
       - name: Require all checks
         env:
           CHECKS_RESULT: ${{ needs.checks.result }}
-        run: test "$CHECKS_RESULT" = success
+          HACS_RESULT: ${{ needs.hacs.result }}
+          BROWSER_RESULT: ${{ needs.browser-compatibility.result }}
+          BROWSER_COVERAGE: ${{ needs.browser-compatibility.outputs.browser-coverage }}
+        run: node scripts/check-browser-coverage.mjs
