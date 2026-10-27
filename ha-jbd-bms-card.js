@@ -1,5 +1,5 @@
 /** JBD Battery & Cell Card · MIT · no runtime dependencies. */
-const VERSION = "0.2.0";
+const VERSION = "0.2.0-beta.1";
 const DEFAULT_THRESHOLDS = Object.freeze({cell_min: 2.8, cell_max: 3.65, delta_warning: 30, delta_critical: 80, soc_low: 15, soc_warning: 30});
 const PALETTES = ["cyan", "violet", "teal", "pink", "blue", "amber"];
 // BEGIN GENERATED I18N — run node scripts/build-i18n.mjs

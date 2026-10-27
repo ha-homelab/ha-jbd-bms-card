@@ -1,6 +1,9 @@
 # Changelog
 
-## 0.2.0
+## 0.2.0-beta.1
+
+First prerelease of the 0.2 series. This beta introduces the changes below;
+the latest stable release remains 0.1.0.
 
 - Add 24 complete, bundled language packs with English canonical source and fallback.
 - Follow the Home Assistant profile automatically; support optional card overrides and regional Chinese/script mappings.
