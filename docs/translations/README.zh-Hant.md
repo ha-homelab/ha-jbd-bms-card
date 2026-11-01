@@ -44,3 +44,9 @@ batteries:
 請依照 [ESPHome 部署指南](../esphome-deployment.md)和[韌體專案](https://github.com/victron-venus/esphome-jbd-bms-mqtt)進行設定。該專案維護的每個設定方案都要求**四個 BMS，每個 BMS 有四個電芯**。請私下設定 Bluetooth 位址、Wi-Fi 和 MQTT broker，然後在 HA 中新增 MQTT 或 ESPHome 整合。安裝此卡片不會為 ESP32 燒錄韌體，也不會建立電池實體。
 
 缺少的讀值仍會顯示為缺少。只有在所有已設定電芯都有有效值時，卡片才會計算最高與最低電芯電壓之間的差值。顏色表示顯示門檻，並非 BMS 保護設定。MQTT 保留值與線上連線並不能證明測量資料是最新的；有需要時，應在資料來源端設定過期機制。請參閱[設定與資料時效性](../configuration.md)以及獨立文件 [Echo Dot 可行性評估](../echo-dot-bluetooth.md)。
+
+## 串聯虛擬電池
+
+虛擬電池將串聯的實體電池組歸為一組，同時保留每個實體電池組的獨立電芯顯示。電壓相加，但串聯電流與 Ah 容量不相加。整個電池系統的 SOC 需要明確指定的上游感測器，絕不取各電池組 SOC 的平均值。請選擇包含此功能的版本；0.2.0-beta.1 尚未包含。以下詳細參考文件為英文。
+
+[Virtual battery guide](../virtual-batteries.md) · [Configuration examples](../../examples/README.md) · [Runbook](../runbook.md) · [Troubleshooting](../troubleshooting.md)

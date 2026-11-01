@@ -16,9 +16,21 @@ Start with the firmware repository's [configuration and installation guide](http
 Its two maintained profiles, `jbd-all-batteries1.yaml` and
 `jbd-all-batteries2.yaml`, each expect **four BMS with four cells per BMS**.
 One monitor covers four batteries/16 cells; two cover eight batteries/32 cells.
-The card's configurable 1–64 cells per battery does not change that firmware
-assumption. A different firmware topology requires adapting its collector,
-polling and aggregates together.
+These production profiles remain unchanged. The card’s frontend limits do not
+change ESP32 BLE capacity or establish a supported electrical configuration.
+
+For a new custom collector, the upstream [virtual-series guide and generator](https://github.com/victron-venus/esphome-jbd-bms-mqtt/blob/main/docs/virtual-series-battery.md)
+provide explicit profiles for **1–4 physical BMS**, with **1–32 cell channels
+per BMS**. The generator creates a new private output directory and does not
+rewrite the maintained production YAML. Use the upstream command and
+validation procedure; configure real credentials and BMS addresses privately.
+
+**Telemetry compatibility matters:** generated profiles in which every BMS
+has four cells use schema 1. Profiles with any other cell count use schema 2
+for HA per-entity monitoring; the current `dbus-mqtt-battery` bridge rejects
+schema 2. Card support for those cells does not imply Victron control support.
+Firmware configuration/build validation is not BLE or battery commissioning.
+Consult the upstream guide for current validated versions and limitations.
 
 Keep `components/battery_telemetry.h` and
 `packages/mqtt-availability.yaml` beside the selected YAML in their original
@@ -53,7 +65,12 @@ entity IDs from **Developer Tools → States**. For every battery, map:
 - every individual cell voltage belonging to the same BMS;
 - optional trustworthy per-battery availability.
 
-Use the [card configuration example](../README.md#add-a-card). Do not mix local
+Use the [card configuration example](../README.md#add-a-card). Group the physical
+pack entries under `virtual_batteries` → `batteries` to display one series
+string. Add another virtual group for each independent string. Optional bank
+voltage/current/power/SOC entities come from an existing upstream integration;
+the card creates no new HA entities. See the [series model](virtual-batteries.md)
+and [examples](../examples/README.md). Do not mix local
 BMS 1 from the first monitor with local BMS 1 from the second. Historical
 registry renames and duplicate suffixes can make an entity ID misleading;
 verify the device association and friendly name as well. Cell readings in mV

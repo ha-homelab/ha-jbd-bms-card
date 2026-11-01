@@ -4,27 +4,70 @@
 <style>
 :root{color-scheme:dark;--primary-text-color:#e6edf8;--secondary-text-color:#8b9bb4;--divider-color:#8ea5ce24;--card-background-color:#111d30;--ha-card-border-radius:24px;font-family:system-ui,sans-serif;background:#0b1423;color:var(--primary-text-color)}
 :root.light{color-scheme:light;--primary-text-color:#172238;--secondary-text-color:#66758c;--divider-color:#bcc8d64d;--card-background-color:#fff;background:#edf2f8}
-body{margin:0;padding:32px 20px 60px}main{max-width:1180px;margin:auto}.demo-toolbar{display:flex;justify-content:space-between;align-items:center;gap:20px;margin:0 4px 20px;font-size:12px;line-height:1.6}.demo-toolbar strong{font-size:13px;letter-spacing:.05em}.demo-toolbar span{color:var(--secondary-text-color)}button,select{font:inherit;color:inherit;background:var(--card-background-color);border:1px solid var(--divider-color);border-radius:9px;padding:8px 12px;cursor:pointer}.controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.controls label{display:grid;gap:4px;font-size:10px}select{max-width:180px}.note{font-size:11px;color:var(--secondary-text-color);margin:18px 4px;line-height:1.6}a{color:#63bbdf}@media(max-width:500px){body{padding:18px 8px}.demo-toolbar{align-items:flex-start;flex-direction:column;gap:12px}}
-</style></head><body><main><div class="demo-toolbar"><div><strong>SYNTHETIC DEMO · NO LIVE BATTERY DATA</strong><br><span>JBD Battery & Cell Card / Home Assistant</span></div><div class="controls"><button id="theme" type="button">Light / dark</button><label>HA profile<select id="profile" aria-label="Simulated HA profile language"></select></label><label>Card language<select id="language" aria-label="Card language"></select></label></div></div><ha-jbd-bms-card></ha-jbd-bms-card><p class="note">Display thresholds are illustrative, not BMS protection settings. Values above are invented fixtures demonstrating normal, low charge, high spread and missing-cell states. Click a measurement to preview the Home Assistant more-info action.</p><p id="event" class="note" aria-live="polite"></p></main>
+body{margin:0;padding:32px 20px 60px}main{max-width:1360px;margin:auto}.demo-toolbar{display:flex;justify-content:space-between;align-items:center;gap:20px;margin:0 4px 20px;font-size:12px;line-height:1.6}.demo-toolbar strong{font-size:13px;letter-spacing:.05em}.demo-toolbar span{color:var(--secondary-text-color)}button,select{font:inherit;color:inherit;background:var(--card-background-color);border:1px solid var(--divider-color);border-radius:9px;padding:8px 12px;cursor:pointer}.controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;align-items:end}.controls label{display:grid;gap:4px;font-size:10px}select{max-width:220px}.scenario-note{border-inline-start:3px solid #53d2cd;background:color-mix(in srgb,var(--card-background-color) 80%,transparent);border-radius:0 10px 10px 0;padding:12px 16px;margin:0 0 18px;line-height:1.6;font-size:13px}.note{font-size:11px;color:var(--secondary-text-color);margin:18px 4px;line-height:1.6}a{color:#63bbdf}@media(max-width:700px){body{padding:18px 8px}.demo-toolbar{align-items:flex-start;flex-direction:column;gap:12px}.controls{justify-content:flex-start}}
+</style></head><body><main><div class="demo-toolbar"><div><strong>SYNTHETIC DEMO · NO LIVE BATTERY DATA</strong><br><span>JBD Battery & Cell Card / virtual series batteries</span></div><div class="controls"><label>Scenario<select id="scenario" aria-label="Synthetic scenario"></select></label><button id="theme" type="button">Light / dark</button><label>HA profile<select id="profile" aria-label="Simulated HA profile language"></select></label><label>Card language<select id="language" aria-label="Card language"></select></label></div></div><p class="scenario-note" id="scenario-note"></p><ha-jbd-bms-card></ha-jbd-bms-card><p class="note">All measurements and entity IDs are invented fixtures. Nominal voltages and ranges are illustrative display metadata, not BMS protection or charging settings. Series grouping is read-only; this page never connects to Home Assistant. Click a source measurement to preview the standard HA more-info action.</p><p class="note"><a href="../docs/virtual-batteries.md">Virtual battery guide</a> · <a href="../examples/README.md">Configuration examples</a> · <a href="../docs/troubleshooting.md">Troubleshooting</a></p><p id="event" class="note" aria-live="polite"></p></main>
 <script type="module">
 import {LOCALES} from '../ha-jbd-bms-card.js';
 const card=document.querySelector('ha-jbd-bms-card');
-const profile=document.querySelector('#profile'),override=document.querySelector('#language');
+const profile=document.querySelector('#profile'),override=document.querySelector('#language'),scenario=document.querySelector('#scenario');
+const query=new URLSearchParams(location.search);
+const scenarios={
+  'series-4':['Four packs · 51.2 V nominal','Four physical 4S LiFePO₄ packs form one virtual series battery. String voltage sums all four pack voltages; current comes from an explicit synthetic string sensor. Member SOC is not averaged.'],
+  'series-1':['One pack · 12.8 V nominal','A single physical 4S pack is also a valid virtual battery. Its four cells retain their physical BMS identity.'],
+  'series-2':['Two packs · 25.6 V nominal','Two physical 4S packs form a 24 V-class string: 25.6 V nominal, eight cells. Series current is not doubled.'],
+  'series-3':['Three packs · 38.4 V nominal','Three physical 4S packs form a 36 V-class string: 38.4 V nominal, twelve cells. The count is configurable.'],
+  'series-5':['Five packs · 64.0 V nominal','Five packs demonstrate that the frontend is not fixed to four. This is not a claim that a maintained ESP32 profile supports five BLE BMS connections.'],
+  'two-strings':['Two independent four-pack strings','Two virtual batteries keep separate totals and physical pack detail. Eight physical packs and thirty-two cells are shown; the card infers no electrical parallel relationship.'],
+  'other-cells':['8S / 7S / 16S independent packs','Separate groups demonstrate other cell counts and chemistry display thresholds. The 7S example assumes a 3.6 V nominal cell. These are not mixed in one electrical string.'],
+  'missing-cell':['Missing cell · no complete spread','One cell is unavailable. Other observed cells remain visible, while that pack’s and group’s complete-cell statistics disappear. The independently valid pack-voltage source still contributes to string voltage.'],
+  'missing-pack':['Missing member · no partial total','A physical pack availability gate is off while its synthetic retained numbers still exist. The member measurements are hidden and the derived string voltage stays missing.'],
+  'upstream-invalid':['Failed upstream voltage · no fallback','The explicit upstream bank-voltage entity is unavailable even though all member voltages are valid. No fallback sum replaces the failed source.'],
+  'group-offline':['Group gate denies all values','The group availability gate denies measurements. Both the virtual summary and every nested member are hidden, even though fixture values still exist.'],
+  'upstream':['Explicit upstream bank measurements','Voltage, current, power and SOC come from explicit synthetic upstream bank sensors. They are independent source values, not a promise of atomic or fresh BMS telemetry.'],
+  'legacy':['Legacy flat battery layout','The original flat batteries configuration remains supported. It displays independent physical packs and never infers a series connection from their names.']
+};
+for(const [key,[label]]of Object.entries(scenarios))scenario.add(new Option(label,key));
 override.add(new Option('Use HA profile','auto'));
 for(const {code,name}of LOCALES){profile.add(new Option(name,code));override.add(new Option(name,code));}
-profile.value='en';override.value='auto';
-const fixtures=[
-{name:'Workshop bank',subtitle:'Chain 1 · module 01',soc:84,voltage:13.29,current:12.4,power:165,temperature:24.8,cells:[3.321,3.324,3.319,3.326]},
-{name:'Solar reserve',subtitle:'Chain 1 · module 02',soc:62,voltage:13.17,current:-4.2,power:-55,temperature:25.3,cells:[3.294,3.287,3.302,3.289]},
-{name:'Evening backup',subtitle:'Chain 2 · module 01',soc:22,voltage:12.98,current:-8.7,power:-113,temperature:27.1,cells:[3.232,3.253,3.245,3.250]},
-{name:'Cell inspection',subtitle:'Chain 2 · module 02',soc:91,voltage:13.55,current:6.3,power:85,temperature:28.4,cells:[3.338,3.344,3.458,3.410]},
-{name:'Low charge',subtitle:'Chain 2 · module 03',soc:12,voltage:12.54,current:-2.3,power:-29,temperature:23.6,cells:[3.138,3.131,3.142,3.129]},
-{name:'Telemetry gap',subtitle:'Chain 2 · module 04',soc:58,voltage:13.14,current:0,power:0,temperature:24.1,cells:[3.286,null,3.291,3.283]}
-];
-const states={},batteries=fixtures.map((f,i)=>{const b={name:f.name,subtitle:f.subtitle,cells:[]};for(const [key,unit] of Object.entries({soc:'%',voltage:'V',current:'A',power:'W',temperature:'°C'})){b[key]=`sensor.demo_b${i}_${key}`;states[b[key]]={state:String(f[key]),attributes:{unit_of_measurement:unit}};}f.cells.forEach((v,j)=>{const id=`sensor.demo_b${i}_cell_${j}`;b.cells.push(id);states[id]={state:v===null?'unavailable':String(v),attributes:{unit_of_measurement:'V'}};});return b;});
-const render=()=>{card.setConfig({type:'custom:ha-jbd-bms-card',language:override.value,batteries});card.hass={states,locale:{language:profile.value}};};render();
+scenario.value=Object.hasOwn(scenarios,query.get('scenario'))?query.get('scenario'):'series-4';
+profile.value=LOCALES.some(l=>l.code===query.get('lang'))?query.get('lang'):'en';override.value='auto';
+if(query.get('theme')==='light')document.documentElement.classList.add('light');
+function fixture(kind){
+  const states={};
+  const entity=(id,value,unit)=>{states[id]={entity_id:id,state:value===null?'unavailable':String(value),attributes:unit?{unit_of_measurement:unit}:{}};return id;};
+  const pack=(bank,index,count=4,nominalCell=3.2)=>{
+    const base=`sensor.demo_${bank}_bms_${index+1}`;
+    const values=Array.from({length:count},(_,c)=>Number((nominalCell+(nominalCell===3.2?.115:.18)+((index+c*3)%7)*.001).toFixed(3)));
+    const b={name:`Physical pack ${index+1}`,subtitle:`BMS ${index+1} · ${count} cells`,nominal_voltage:Number((nominalCell*count).toFixed(1)),voltage_range:{min:Number((count*(nominalCell===3.2?2.8:3)).toFixed(2)),max:Number((count*(nominalCell===3.2?3.65:4.2)).toFixed(2))},soc:entity(`${base}_soc`,84-index*2,'%'),voltage:entity(`${base}_voltage`,Number(values.reduce((a,v)=>a+v,0).toFixed(3)),'V'),current:entity(`${base}_current`,-8.25,'A'),power:entity(`${base}_power`,Number((values.reduce((a,v)=>a+v,0)*-8.25).toFixed(1)),'W'),temperature:entity(`${base}_temperature`,24.8+index*.4,'°C'),cells:values.map((v,c)=>entity(`${base}_cell_${c+1}`,v,'V'))};
+    if(nominalCell!==3.2)b.thresholds={cell_min:3,cell_max:4.2,delta_warning:40,delta_critical:100};
+    return b;
+  };
+  const group=(id,count,name='Main series bank')=>({name,subtitle:`${count*12} V class · ${count} physical ${count===1?'pack':'packs'} · ${count*4} cells`,nominal_voltage:Number((count*12.8).toFixed(1)),voltage_range:{min:Number((count*11.2).toFixed(1)),max:Number((count*14.6).toFixed(1))},current:entity(`sensor.demo_${id}_string_current`,-8.25,'A'),batteries:Array.from({length:count},(_,i)=>pack(id,i))});
+  const count=kind.startsWith('series-')?Number(kind.slice(7)):4;
+  const groups=[group('main',count)];
+  if(kind==='two-strings')groups.push(group('reserve',4,'Reserve series bank'));
+  if(kind==='other-cells')groups.splice(0,1,...[{id:'lfp8',count:8,cell:3.2,name:'Single 8S LiFePO₄ pack'},{id:'other7',count:7,cell:3.6,name:'Single 7S example pack'},{id:'lfp16',count:16,cell:3.2,name:'Single 16S LiFePO₄ pack'}].map(f=>{const b=pack(f.id,0,f.count,f.cell);return {name:f.name,subtitle:'Independent group · one physical BMS',nominal_voltage:b.nominal_voltage,voltage_range:b.voltage_range,thresholds:b.thresholds,batteries:[b]};}));
+  if(kind==='missing-cell')states[groups[0].batteries[1].cells[2]].state='unavailable';
+  if(kind==='missing-pack')groups[0].batteries[2].availability=entity('binary_sensor.demo_member_valid','off');
+  if(kind==='group-offline')groups[0].availability=entity('binary_sensor.demo_group_valid','off');
+  if(kind==='upstream-invalid')groups[0].voltage=entity('sensor.demo_bank_voltage',null,'V');
+  if(kind==='upstream')Object.assign(groups[0],{voltage:entity('sensor.demo_bank_voltage',53.08,'V'),current:entity('sensor.demo_bank_current',-8.2,'A'),power:entity('sensor.demo_bank_power',-435.3,'W'),soc:entity('sensor.demo_bank_soc',81,'%')});
+  if(kind==='legacy'){
+    const batteries=Array.from({length:6},(_,i)=>pack('legacy',i));
+    states[batteries[3].cells[2]].state='3.458';states[batteries[4].soc].state='12';states[batteries[5].cells[1]].state='unavailable';
+    return {states,config:{batteries}};
+  }
+  return {states,config:{virtual_batteries:groups}};
+}
+const render=()=>{
+  const {states,config}=fixture(scenario.value);
+  document.querySelector('#scenario-note').textContent=scenarios[scenario.value][1];
+  document.querySelector('#event').textContent='';
+  card.setConfig({type:'custom:ha-jbd-bms-card',title:scenario.value==='legacy'?'Physical battery atlas':'Virtual battery atlas',language:override.value,...config});
+  card.hass={states,locale:{language:profile.value}};
+};
+render();
 document.querySelector('#theme').addEventListener('click',()=>document.documentElement.classList.toggle('light'));
-override.addEventListener('change',render);
-profile.addEventListener('change',render);
+for(const input of [override,profile,scenario])input.addEventListener('change',render);
 card.addEventListener('hass-more-info',e=>document.querySelector('#event').textContent=`Demo only: Home Assistant would open more-info for ${e.detail.entityId}.`);
 </script></body></html>

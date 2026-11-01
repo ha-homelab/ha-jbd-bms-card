@@ -48,3 +48,9 @@ Seguire la guida di distribuzione ESPHome e il progetto firmware. Ogni profilo m
 Le letture mancanti restano mancanti. La differenza fra celle viene calcolata solo quando tutte le celle configurate hanno valori validi. I colori sono soglie di visualizzazione, non impostazioni di protezione del BMS. Valori MQTT conservati e connessione attiva non garantiscono misure recenti; applicare una scadenza alla fonte quando necessario. I riferimenti tecnici e la valutazione Echo Dot sono in inglese.
 
 [Configuration](../configuration.md) · [Echo Dot](../echo-dot-bluetooth.md)
+
+## Batterie virtuali in serie
+
+Una batteria virtuale raggruppa pacchi fisici collegati in serie, mantenendo visibili le singole celle di ciascun pacco. Le tensioni si sommano; corrente e Ah non si sommano in serie. Il SOC del banco richiede un sensore sorgente assegnato esplicitamente e non è mai la media dei SOC dei singoli pacchi. Scegli una versione che includa questa funzione; 0.2.0-beta.1 non la include. I riferimenti dettagliati seguenti sono in inglese.
+
+[Virtual battery guide](../virtual-batteries.md) · [Configuration examples](../../examples/README.md) · [Runbook](../runbook.md) · [Troubleshooting](../troubleshooting.md)

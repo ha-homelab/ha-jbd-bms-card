@@ -221,9 +221,13 @@ async function main() {
       assert.equal(await packs.locator('h3').count(), 10);
       assert.equal(await text(entity('sensor.series_4_current').locator('strong')), '-2.5');
       assert.equal(await text(card.locator('.virtual-battery').nth(3).locator('.series-metrics .metric').nth(2).locator('strong')), '-132.0');
-      for (const width of [320, 1280]) {
+      for (const width of [320, 1280, 1440]) {
         await page.setViewportSize({width,height:900});
         await assertLayout(10, 84);
+        if (width === 1440) {
+          const rows = await card.locator('.virtual-battery').nth(3).locator('.battery').evaluateAll(elements => elements.map(element => element.getBoundingClientRect().top));
+          assert.equal(new Set(rows).size, 1, 'Four physical members fit one desktop row');
+        }
         await page.screenshot({path:path.join(output, `virtual-series-${width}.png`), fullPage:true, animations:'disabled'});
       }
     });

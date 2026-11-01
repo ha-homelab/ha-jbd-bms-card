@@ -1,0 +1,38 @@
+# Synthetic entity IDs: replace every ID before use.
+# Display ranges are illustrative, not charging or BMS protection settings.
+# Requires a release with virtual_batteries support (not 0.2.0-beta.1).
+type: custom:ha-jbd-bms-card
+language: auto
+title: 24 V-class example
+virtual_batteries:
+  - name: 24 V-class series bank
+    topology: series
+    subtitle: 2 physical packs in series / 8 cells total
+    nominal_voltage: 25.6
+    voltage_range: {min: 22.4, max: 29.2}
+    current: sensor.example_string_current
+    batteries:
+      - name: Pack 1
+        nominal_voltage: 12.8
+        voltage_range: {min: 11.2, max: 14.6}
+        soc: sensor.example_bms_1_soc
+        voltage: sensor.example_bms_1_voltage
+        current: sensor.example_bms_1_current
+        temperature: sensor.example_bms_1_temperature
+        cells:
+          - sensor.example_bms_1_cell_1
+          - sensor.example_bms_1_cell_2
+          - sensor.example_bms_1_cell_3
+          - sensor.example_bms_1_cell_4
+      - name: Pack 2
+        nominal_voltage: 12.8
+        voltage_range: {min: 11.2, max: 14.6}
+        soc: sensor.example_bms_2_soc
+        voltage: sensor.example_bms_2_voltage
+        current: sensor.example_bms_2_current
+        temperature: sensor.example_bms_2_temperature
+        cells:
+          - sensor.example_bms_2_cell_1
+          - sensor.example_bms_2_cell_2
+          - sensor.example_bms_2_cell_3
+          - sensor.example_bms_2_cell_4

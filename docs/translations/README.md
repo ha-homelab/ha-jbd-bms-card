@@ -31,6 +31,13 @@ Detailed technical references remain in English. This is a complete set of trans
 
 ## Detailed references
 
+Each quickstart includes a localized introduction to virtual series batteries. The full topology reference, examples, runbook and troubleshooting remain English. This does not claim full technical-document translation or native-speaker review. Virtual grouping requires a release that includes it; 0.2.0-beta.1 predates that feature.
+
+- [Virtual series battery model](../virtual-batteries.md)
+- [Configuration examples](../../examples/README.md)
+- [Operations runbook](../runbook.md)
+- [Troubleshooting](../troubleshooting.md)
+
 - [Main README](../../README.md)
 - [Configuration and data semantics](../configuration.md)
 - [Language selection and translation contributions](../i18n.md)
