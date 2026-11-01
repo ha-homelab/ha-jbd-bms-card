@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0-rc.1
+
+Release candidate for virtual series batteries. Promotes the beta feature set with no runtime behavior changes; only the embedded version and package metadata change. This remains an opt-in prerelease.
+
 ## 0.3.0-beta.1
 
 First beta of virtual series batteries. This opt-in prerelease leaves 0.1.0 as the latest stable release.
