@@ -19,7 +19,7 @@ Works with entities from [ESPHome JBD BMS MQTT](https://github.com/victron-venus
 
 The [24 translated guides](docs/translations/README.md) cover installation, configuration, language selection, ESPHome deployment and measurement quality. Detailed technical references use English. The 24-language interface requires **0.2.0 or newer**; development documentation can describe code newer than the latest [published release](https://github.com/ha-homelab/ha-jbd-bms-card/releases).
 
-**Version note:** virtual series grouping is in development and requires a release that explicitly includes `virtual_batteries`. It is not present in 0.2.0-beta.1. The diagrams and examples describe the source on this branch.
+**Version note:** virtual series grouping starts with **0.3.0-beta.1**. Select this prerelease or a later release that includes `virtual_batteries`; 0.2.0-beta.1 only supports flat packs. See [release notes](https://github.com/ha-homelab/ha-jbd-bms-card/releases) and [HACS prerelease installation](docs/hacs.md#install-a-prerelease).
 
 ## Preview
 
