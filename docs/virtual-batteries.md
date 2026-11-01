@@ -2,7 +2,7 @@
 
 A **virtual battery** is the dashboard representation of one series string of physical battery packs. Each physical pack keeps its own BMS, pack measurements and individual cells. The card shows a string summary above those packs, so a 48 V-class bank does not lose the detail of its four 12 V-class members.
 
-This feature is in development; use a release that explicitly includes `virtual_batteries`. The published 0.2.0-beta.1 does not include it. Existing flat `batteries` configurations remain supported.
+Virtual series groups are available starting with **0.3.0-beta.1**. Select that prerelease or a later release containing `virtual_batteries`; 0.2.0-beta.1 does not include it. Existing flat `batteries` configurations remain supported.
 
 ![Data architecture: physical packs, telemetry and a virtual series battery](images/virtual-series-architecture.svg)
 

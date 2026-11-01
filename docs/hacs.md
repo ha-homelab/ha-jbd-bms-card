@@ -29,6 +29,19 @@ and catalog files. The distributed file is the single root
 `ha-jbd-bms-card.js`; all translations are embedded. See the official
 [dashboard requirements](https://www.hacs.xyz/docs/publish/plugin/).
 
+## Install a prerelease
+
+Beta and release-candidate (RC) versions are opt-in GitHub prereleases. Virtual
+series support starts with `v0.3.0-beta.1`; use the newest `0.3.0` RC when testing
+that feature. In the repository download/redownload version selector, enable
+prerelease versions if offered and choose the exact tag. If your HACS version
+does not offer that tag, use the release
+[`ha-jbd-bms-card.js` asset](https://github.com/ha-homelab/ha-jbd-bms-card/releases)
+with the [manual installation](../README.md#manual). Register only one
+module resource and reload all clients. A beta or RC does not replace the latest
+stable release automatically. See the [runbook](runbook.md#8-update-or-roll-back)
+for rollback, including the older flat configuration when returning to 0.2.x.
+
 ## Move from a manual installation to HACS
 
 Export the dashboard configuration and record its current resource URL/version.

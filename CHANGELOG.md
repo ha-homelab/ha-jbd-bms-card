@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.3.0-beta.1
+
+First beta of virtual series batteries. This opt-in prerelease leaves 0.1.0 as the latest stable release.
 
 - Add virtual series groups containing one or more physical packs, preserving every physical cell and the legacy flat configuration.
 - Sum only complete member voltages; support explicit upstream bank voltage/current/power/SOC, labelled power estimation, and separate lowest-member SOC/range diagnostics. Never sum series current/Ah or average member SOC.
