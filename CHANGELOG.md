@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.0
+
+Stable release of virtual series batteries and the 24-language interface. Promotes the verified 0.3.0-rc.1 feature set; the JavaScript differs only in its version constant.
+
+- Group configurable physical packs into independent virtual series while retaining every pack and cell, nominal voltage metadata and display thresholds.
+- Use complete-only derived voltages, explicit upstream bank sensors, separate lowest-member SOC diagnostics and unavailable-data handling.
+- Follow the Home Assistant profile language automatically, with per-card overrides and RTL support.
+- Include illustrated configuration, eight YAML examples, screenshots, ESPHome deployment guidance, troubleshooting and an operations runbook.
+- Preserve existing flat `batteries` configurations. Install through the HACS custom repository or the published JavaScript asset.
+
 ## 0.3.0-rc.1
 
 Release candidate for virtual series batteries. Promotes the beta feature set with no runtime behavior changes; only the embedded version and package metadata change. This remains an opt-in prerelease.
