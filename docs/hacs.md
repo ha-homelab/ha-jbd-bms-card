@@ -1,9 +1,10 @@
 # HACS installation and publication
 
 This repository is available as a **HACS custom repository**. It has not been
-accepted into the default catalog. The existing `v0.1.0` release contains the
-original English/Russian card; the 24-language interface requires the `0.2.0`
-code or a later release containing it. Check the [release notes](https://github.com/ha-homelab/ha-jbd-bms-card/releases)
+accepted into the default catalog. **v0.3.0** is the current stable release and
+includes virtual series groups and all 24 interface languages. The older
+`v0.1.0` release contains the original English/Russian flat card. Check the
+[release notes](https://github.com/ha-homelab/ha-jbd-bms-card/releases)
 before choosing a download. A branch or pull request is not a stable release.
 
 ## Install a release
@@ -32,8 +33,9 @@ and catalog files. The distributed file is the single root
 ## Install a prerelease
 
 Beta and release-candidate (RC) versions are opt-in GitHub prereleases. Virtual
-series support starts with `v0.3.0-beta.1`; use the newest `0.3.0` RC when testing
-that feature. In the repository download/redownload version selector, enable
+series support first appeared in `v0.3.0-beta.1` and is now included in stable
+`v0.3.0`. Choose a beta or RC only when intentionally testing a prerelease.
+In the repository download/redownload version selector, enable
 prerelease versions if offered and choose the exact tag. If your HACS version
 does not offer that tag, use the release
 [`ha-jbd-bms-card.js` asset](https://github.com/ha-homelab/ha-jbd-bms-card/releases)

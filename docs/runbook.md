@@ -16,7 +16,7 @@ Check that each cell belongs to its intended BMS and that no pack source appears
 
 ## 3. Install a known card version
 
-Save the current dashboard YAML and resource URL before updating. For a manual install, keep the previous known-working JavaScript alongside your normal operational backup. Follow [HACS/manual installation](hacs.md), using a release whose notes include virtual-battery support. The older 0.2.0-beta.1 only supports flat packs.
+Save the current dashboard YAML and resource URL before updating. For a manual install, keep the previous known-working JavaScript alongside your normal operational backup. Follow [HACS/manual installation](hacs.md), using stable `v0.3.0` or a later release whose notes include virtual-battery support. The older 0.2.0-beta.1 only supports flat packs.
 
 Register one module resource. Use a version query for manual updates, reload the browser and verify the intended module is served. Avoid mixing HACS and manual resource registrations.
 
