@@ -42,5 +42,21 @@
   "errorText": "배터리 {battery}: {field}는 텍스트여야 합니다.",
   "errorCell": "배터리 {battery}: 셀 {cell}이 올바르지 않습니다.",
   "errorDuplicate": "배터리 {battery}: 셀 엔티티가 중복되었습니다.",
-  "errorAccent": "배터리 {battery}: 지원하지 않는 강조 색상입니다."
+  "errorAccent": "배터리 {battery}: 지원하지 않는 강조 색상입니다.",
+  "virtualBattery": "가상 배터리",
+  "defaultVirtualBattery": "가상 배터리 {number}",
+  "virtualCount": "가상 배터리: {count}",
+  "seriesMembers": "직렬 · 배터리 {count}개",
+  "voltageSum": "배터리 전압 합계",
+  "estimatedPower": "예상 전력 · V × I",
+  "lowestSoc": "가장 낮은 배터리 충전량",
+  "socRange": "배터리 충전량 범위",
+  "nominalVoltage": "공칭 전압",
+  "displayRange": "전압 표시 범위",
+  "seriesCells": "전체 직렬 셀",
+  "errorLayout": "batteries 또는 virtual_batteries 중 하나를 사용하세요.",
+  "errorVirtualBatteries": "virtual_batteries에 직렬 그룹 1–32개를 정의하고 각 그룹에 배터리 1–32개를 지정하세요.",
+  "errorVoltageConfig": "nominal_voltage는 양수여야 하며 voltage_range에는 유한한 min ≥ 0 및 max > min 값이 필요합니다.",
+  "errorSeriesDuplicate": "각 직렬 그룹은 서로 다른 배터리 전압 및 셀 엔티티를 사용해야 합니다.",
+  "errorSeriesField": "잘못된 가상 배터리 필드: {field}."
 }

@@ -42,5 +42,21 @@
   "errorText": "Batarya {battery}: {field} metin olmalıdır.",
   "errorCell": "Batarya {battery}: geçersiz hücre {cell}.",
   "errorDuplicate": "Batarya {battery}: yinelenen hücre varlığı.",
-  "errorAccent": "Batarya {battery}: desteklenmeyen vurgu rengi."
+  "errorAccent": "Batarya {battery}: desteklenmeyen vurgu rengi.",
+  "virtualBattery": "Sanal batarya",
+  "defaultVirtualBattery": "Sanal batarya {number}",
+  "virtualCount": "Sanal bataryalar: {count}",
+  "seriesMembers": "Seri · {count} batarya",
+  "voltageSum": "Batarya gerilimlerinin toplamı",
+  "estimatedPower": "Tahmini güç · V × I",
+  "lowestSoc": "En düşük batarya şarjı",
+  "socRange": "Bataryaların şarj aralığı",
+  "nominalVoltage": "Nominal gerilim",
+  "displayRange": "Gerilim gösterim aralığı",
+  "seriesCells": "Serinin tüm hücreleri",
+  "errorLayout": "batteries veya virtual_batteries seçeneklerinden birini kullanın.",
+  "errorVirtualBatteries": "virtual_batteries içinde her biri 1–32 batarya içeren 1–32 seri grubu tanımlayın.",
+  "errorVoltageConfig": "nominal_voltage pozitif olmalıdır; voltage_range sonlu min ≥ 0 ve max > min değerleri gerektirir.",
+  "errorSeriesDuplicate": "Her seri, batarya gerilimi ve hücreler için farklı varlıklar kullanmalıdır.",
+  "errorSeriesField": "Geçersiz sanal batarya alanı: {field}."
 }

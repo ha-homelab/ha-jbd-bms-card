@@ -44,3 +44,9 @@ Hilangkan `language` atau gunakan `language: auto` untuk mengikuti bahasa profil
 Ikuti [panduan penerapan ESPHome](../esphome-deployment.md) dan [proyek firmware](https://github.com/victron-venus/esphome-jbd-bms-mqtt). Setiap profil yang dipelihara dalam proyek tersebut mengharapkan **empat BMS dengan empat sel per BMS**. Konfigurasikan alamat Bluetooth, Wi-Fi, dan broker MQTT secara privat, lalu tambahkan integrasi MQTT atau ESPHome di HA. Memasang kartu ini tidak mem-flash ESP32 atau membuat entitas baterai.
 
 Nilai yang tidak tersedia tetap ditampilkan sebagai tidak tersedia. Kartu menghitung selisih tegangan sel tertinggi dan terendah hanya jika semua sel yang dikonfigurasi memiliki nilai valid. Warna adalah ambang tampilan, bukan pengaturan perlindungan BMS. Nilai MQTT yang disimpan dan koneksi daring tidak membuktikan bahwa pengukuran masih baru; terapkan kedaluwarsa pada sumber data bila diperlukan. Lihat [konfigurasi dan kesegaran data](../configuration.md) serta [kajian kelayakan Echo Dot](../echo-dot-bluetooth.md) yang terpisah.
+
+## Baterai virtual dalam rangkaian seri
+
+Baterai virtual mengelompokkan paket baterai fisik dalam rangkaian seri sambil tetap menampilkan setiap sel pada masing-masing paket. Tegangan dijumlahkan; arus dan Ah tidak dijumlahkan dalam rangkaian seri. SOC seluruh bank memerlukan sensor sumber yang dipilih secara eksplisit dan tidak pernah berupa rata-rata SOC anggotanya. Pilih rilis yang menyertakan fitur ini; 0.2.0-beta.1 belum menyertakannya. Referensi terperinci di bawah tersedia dalam bahasa Inggris.
+
+[Virtual battery guide](../virtual-batteries.md) · [Configuration examples](../../examples/README.md) · [Runbook](../runbook.md) · [Troubleshooting](../troubleshooting.md)

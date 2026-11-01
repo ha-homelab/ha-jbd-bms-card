@@ -44,3 +44,9 @@ batteries:
 [ESPHome 배포 안내](../esphome-deployment.md)와 [펌웨어 프로젝트](https://github.com/victron-venus/esphome-jbd-bms-mqtt)의 지침을 따르세요. 프로젝트에서 유지 관리하는 각 프로필은 **BMS 4개, BMS당 셀 4개**를 전제로 합니다. Bluetooth 주소, Wi-Fi, MQTT 브로커를 비공개 설정으로 구성한 다음 HA에 MQTT 또는 ESPHome 통합을 추가하세요. 이 카드를 설치해도 ESP32에 펌웨어가 기록되거나 배터리 엔티티가 생성되지는 않습니다.
 
 누락된 측정값은 누락 상태로 유지됩니다. 설정된 모든 셀에 유효한 값이 있을 때만 최고 셀 전압과 최저 셀 전압의 차이를 계산합니다. 색상은 표시용 임계값이며 BMS 보호 설정이 아닙니다. MQTT의 보관된 값이나 온라인 연결만으로 측정값이 최신임을 확인할 수는 없습니다. 필요한 경우 데이터 원본에서 유효 기간을 적용하세요. [구성 및 데이터 최신성](../configuration.md)과 별도 문서인 [Echo Dot 활용 가능성 평가](../echo-dot-bluetooth.md)를 참고하세요.
+
+## 직렬 가상 배터리
+
+가상 배터리는 직렬로 연결된 물리 팩을 하나로 묶으면서 각 팩의 개별 셀을 계속 표시합니다. 전압은 합산하지만 직렬 전류와 Ah는 합산하지 않습니다. 뱅크 전체의 SOC에는 명시적으로 지정한 상위 소스 센서가 필요하며, 개별 팩 SOC의 평균을 사용하지 않습니다. 이 기능을 포함한 릴리스를 선택하세요. 0.2.0-beta.1에는 포함되어 있지 않습니다. 아래의 상세 참조 문서는 영어입니다.
+
+[Virtual battery guide](../virtual-batteries.md) · [Configuration examples](../../examples/README.md) · [Runbook](../runbook.md) · [Troubleshooting](../troubleshooting.md)

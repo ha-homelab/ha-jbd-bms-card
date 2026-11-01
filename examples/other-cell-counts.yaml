@@ -1,0 +1,81 @@
+# Synthetic entity IDs: replace every ID before use.
+# Display ranges are illustrative, not charging or BMS protection settings.
+# Requires a release with virtual_batteries support (not 0.2.0-beta.1).
+type: custom:ha-jbd-bms-card
+language: auto
+# These chemistries are in SEPARATE groups. This is not a mixed-chemistry series string.
+# The second nominal voltage assumes a manufacturer-stated 3.6 V/cell example.
+title: Other physical pack layouts
+virtual_batteries:
+  - name: Single 8S LiFePO4 pack
+    nominal_voltage: 25.6
+    voltage_range: {min: 22.4, max: 29.2}
+    batteries:
+      - name: 8S pack
+        nominal_voltage: 25.6
+        voltage_range: {min: 22.4, max: 29.2}
+        soc: sensor.lfp8_soc
+        voltage: sensor.lfp8_voltage
+        current: sensor.lfp8_current
+        temperature: sensor.lfp8_temperature
+        cells:
+          - sensor.lfp8_cell_1
+          - sensor.lfp8_cell_2
+          - sensor.lfp8_cell_3
+          - sensor.lfp8_cell_4
+          - sensor.lfp8_cell_5
+          - sensor.lfp8_cell_6
+          - sensor.lfp8_cell_7
+          - sensor.lfp8_cell_8
+  - name: Single 7S example pack
+    nominal_voltage: 25.2
+    voltage_range: {min: 21, max: 29.4}
+    thresholds:
+      cell_min: 3.0
+      cell_max: 4.2
+      delta_warning: 40
+      delta_critical: 100
+    batteries:
+      - name: 7S pack
+        nominal_voltage: 25.2
+        voltage_range: {min: 21, max: 29.4}
+        soc: sensor.other7_soc
+        voltage: sensor.other7_voltage
+        current: sensor.other7_current
+        temperature: sensor.other7_temperature
+        cells:
+          - sensor.other7_cell_1
+          - sensor.other7_cell_2
+          - sensor.other7_cell_3
+          - sensor.other7_cell_4
+          - sensor.other7_cell_5
+          - sensor.other7_cell_6
+          - sensor.other7_cell_7
+  - name: Single 16S LiFePO4 pack
+    nominal_voltage: 51.2
+    voltage_range: {min: 44.8, max: 58.4}
+    batteries:
+      - name: 16S pack
+        nominal_voltage: 51.2
+        voltage_range: {min: 44.8, max: 58.4}
+        soc: sensor.lfp16_soc
+        voltage: sensor.lfp16_voltage
+        current: sensor.lfp16_current
+        temperature: sensor.lfp16_temperature
+        cells:
+          - sensor.lfp16_cell_1
+          - sensor.lfp16_cell_2
+          - sensor.lfp16_cell_3
+          - sensor.lfp16_cell_4
+          - sensor.lfp16_cell_5
+          - sensor.lfp16_cell_6
+          - sensor.lfp16_cell_7
+          - sensor.lfp16_cell_8
+          - sensor.lfp16_cell_9
+          - sensor.lfp16_cell_10
+          - sensor.lfp16_cell_11
+          - sensor.lfp16_cell_12
+          - sensor.lfp16_cell_13
+          - sensor.lfp16_cell_14
+          - sensor.lfp16_cell_15
+          - sensor.lfp16_cell_16

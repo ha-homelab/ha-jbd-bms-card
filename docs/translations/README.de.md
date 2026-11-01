@@ -48,3 +48,9 @@ Folgen Sie der ESPHome-Bereitstellungsanleitung und dem Firmware-Projekt. Die ge
 Fehlende Messwerte bleiben fehlend. Die Zellspreizung wird nur berechnet, wenn alle konfigurierten Zellen gültige Werte besitzen. Farben sind Anzeigeschwellen, keine BMS-Schutzeinstellungen. Gespeicherte MQTT-Werte und eine Online-Verbindung beweisen keine aktuellen Messungen; setzen Sie bei Bedarf eine Ablaufzeit in der Datenquelle durch. Die technischen Referenzen und die Echo-Dot-Bewertung sind auf Englisch.
 
 [Configuration](../configuration.md) · [Echo Dot](../echo-dot-bluetooth.md)
+
+## Virtuelle Batterien in Reihe
+
+Eine virtuelle Batterie gruppiert physische Akkupacks in Reihenschaltung und zeigt weiterhin jede Zelle des jeweiligen Packs. Spannungen werden addiert; Strom und Ah werden in Reihe nicht addiert. Der SOC der Gesamtbatterie benötigt einen ausdrücklich zugeordneten Quellsensor und ist niemals der Mittelwert der einzelnen SOC-Werte. Wählen Sie eine Version mit dieser Funktion; 0.2.0-beta.1 enthält sie nicht. Die ausführlichen Referenzen unten sind auf Englisch.
+
+[Virtual battery guide](../virtual-batteries.md) · [Configuration examples](../../examples/README.md) · [Runbook](../runbook.md) · [Troubleshooting](../troubleshooting.md)

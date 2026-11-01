@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Add virtual series groups containing one or more physical packs, preserving every physical cell and the legacy flat configuration.
+- Sum only complete member voltages; support explicit upstream bank voltage/current/power/SOC, labelled power estimation, and separate lowest-member SOC/range diagnostics. Never sum series current/Ah or average member SOC.
+- Add group/pack nominal voltages, display ranges, inherited thresholds, group availability gates, normalized voltage/current/power units, and complete-cell group statistics.
+- Add configurable one-through-five-pack synthetic demos, independent strings, other cell counts/chemistries and failure cases.
+- Document architecture and missing-data semantics with SVG diagrams, voltage chart, example YAML, setup, troubleshooting and operations runbook; update all 24 localized quickstarts with the virtual-series model.
+
 ## 0.2.0-beta.1
 
 First prerelease of the 0.2 series. This beta introduces the changes below;

@@ -44,3 +44,9 @@ Pomiń `language` lub użyj `language: auto`, aby karta korzystała z języka pr
 Skorzystaj z [instrukcji wdrożenia ESPHome](../esphome-deployment.md) i [projektu oprogramowania układowego](https://github.com/victron-venus/esphome-jbd-bms-mqtt). Każdy utrzymywany profil projektu zakłada **cztery systemy BMS, po cztery ogniwa na BMS**. Skonfiguruj prywatnie adresy Bluetooth, Wi-Fi i broker MQTT, a następnie dodaj integrację MQTT lub ESPHome w HA. Instalacja karty nie wgrywa oprogramowania do ESP32 ani nie tworzy encji baterii.
 
 Brakujące odczyty pozostają oznaczone jako brakujące. Karta oblicza różnicę między najwyższym a najniższym napięciem ogniwa tylko wtedy, gdy wszystkie skonfigurowane ogniwa mają prawidłowe wartości. Kolory oznaczają progi wyświetlania, a nie ustawienia zabezpieczeń BMS. Zachowane wartości MQTT i połączenie online nie potwierdzają aktualności pomiarów; w razie potrzeby ustaw wygasanie danych po stronie źródła. Zobacz [konfigurację i aktualność danych](../configuration.md) oraz osobną [ocenę możliwości wykorzystania Echo Dot](../echo-dot-bluetooth.md).
+
+## Wirtualne baterie połączone szeregowo
+
+Wirtualna bateria grupuje fizyczne pakiety połączone szeregowo, zachowując widok poszczególnych ogniw każdego pakietu. Napięcia się sumują; prąd i pojemność w Ah w połączeniu szeregowym nie sumują się. SOC całego banku wymaga jawnie wskazanego czujnika źródłowego i nigdy nie jest średnią SOC pakietów. Wybierz wydanie zawierające tę funkcję; 0.2.0-beta.1 jej nie zawiera. Szczegółowe materiały poniżej są po angielsku.
+
+[Virtual battery guide](../virtual-batteries.md) · [Configuration examples](../../examples/README.md) · [Runbook](../runbook.md) · [Troubleshooting](../troubleshooting.md)

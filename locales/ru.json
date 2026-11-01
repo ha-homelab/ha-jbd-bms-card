@@ -42,5 +42,21 @@
   "errorText": "Батарея {battery}: {field} должен быть текстом.",
   "errorCell": "Батарея {battery}: недопустимая ячейка {cell}.",
   "errorDuplicate": "Батарея {battery}: повторяющаяся сущность ячейки.",
-  "errorAccent": "Батарея {battery}: неподдерживаемый акцентный цвет."
+  "errorAccent": "Батарея {battery}: неподдерживаемый акцентный цвет.",
+  "virtualBattery": "Виртуальная батарея",
+  "defaultVirtualBattery": "Виртуальная батарея {number}",
+  "virtualCount": "Виртуальные батареи: {count}",
+  "seriesMembers": "Последовательная цепь · батарей: {count}",
+  "voltageSum": "Сумма напряжений батарей",
+  "estimatedPower": "Расчётная мощность · V × I",
+  "lowestSoc": "Минимальный заряд батареи",
+  "socRange": "Диапазон заряда батарей",
+  "nominalVoltage": "Номинальное напряжение",
+  "displayRange": "Диапазон отображения напряжения",
+  "seriesCells": "Ячейки всей цепи",
+  "errorLayout": "Используйте либо batteries, либо virtual_batteries.",
+  "errorVirtualBatteries": "Задайте virtual_batteries: 1–32 последовательные группы, каждая из 1–32 батарей.",
+  "errorVoltageConfig": "nominal_voltage должно быть положительным; voltage_range требует конечных min ≥ 0 и max > min.",
+  "errorSeriesDuplicate": "В каждой цепи сущности напряжения батарей и ячеек должны быть уникальными.",
+  "errorSeriesField": "Некорректное поле виртуальной батареи: {field}."
 }

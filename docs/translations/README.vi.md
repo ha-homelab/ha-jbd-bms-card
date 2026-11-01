@@ -44,3 +44,9 @@ Bỏ qua `language` hoặc dùng `language: auto` để theo ngôn ngữ trong h
 Làm theo [hướng dẫn triển khai ESPHome](../esphome-deployment.md) và [dự án firmware](https://github.com/victron-venus/esphome-jbd-bms-mqtt). Mỗi cấu hình được duy trì trong dự án đều yêu cầu **bốn BMS, mỗi BMS có bốn cell**. Thiết lập riêng tư địa chỉ Bluetooth, Wi-Fi và MQTT broker, sau đó thêm tích hợp MQTT hoặc ESPHome vào HA. Cài thẻ này không nạp firmware cho ESP32 và không tạo thực thể pin.
 
 Giá trị bị thiếu vẫn được hiển thị là thiếu. Thẻ chỉ tính chênh lệch giữa điện áp cell cao nhất và thấp nhất khi tất cả cell đã cấu hình đều có giá trị hợp lệ. Màu sắc là các ngưỡng hiển thị, không phải thiết lập bảo vệ của BMS. Các giá trị MQTT được giữ lại và kết nối trực tuyến không chứng minh phép đo còn mới; hãy áp dụng thời hạn dữ liệu tại nguồn khi cần. Xem [cấu hình và độ mới của dữ liệu](../configuration.md) cùng tài liệu riêng [đánh giá khả năng sử dụng Echo Dot](../echo-dot-bluetooth.md).
+
+## Pin ảo nối tiếp
+
+Pin ảo nhóm các bộ pin vật lý mắc nối tiếp và vẫn hiển thị từng cell của mỗi bộ. Điện áp được cộng lại; dòng điện và Ah không được cộng trong mạch nối tiếp. SOC của toàn bộ hệ pin cần một cảm biến nguồn được chỉ định rõ ràng và không bao giờ là trung bình SOC của các bộ pin. Hãy chọn bản phát hành có tính năng này; 0.2.0-beta.1 chưa có. Các tài liệu tham khảo chi tiết bên dưới bằng tiếng Anh.
+
+[Virtual battery guide](../virtual-batteries.md) · [Configuration examples](../../examples/README.md) · [Runbook](../runbook.md) · [Troubleshooting](../troubleshooting.md)

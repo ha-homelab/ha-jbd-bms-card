@@ -44,3 +44,9 @@ batteries:
 [ESPHome の導入ガイド](../esphome-deployment.md)と[ファームウェアプロジェクト](https://github.com/victron-venus/esphome-jbd-bms-mqtt)に従ってください。このプロジェクトで保守されている各プロファイルは、**BMS 4台、各 BMS に4セル**の構成を想定しています。Bluetooth アドレス、Wi-Fi、MQTT ブローカーは非公開の設定として入力し、その後 HA に MQTT または ESPHome インテグレーションを追加します。このカードのインストールだけでは、ESP32 への書き込みやバッテリーエンティティの作成は行われません。
 
 欠測値は欠測のまま表示されます。設定したすべてのセルに有効な値がある場合にのみ、最高セル電圧と最低セル電圧の差を計算します。色は表示上のしきい値であり、BMS の保護設定ではありません。MQTT の保持値やオンライン接続だけでは、測定値が新しいとは判断できません。必要に応じてデータの取得元で有効期限を設定してください。[設定とデータの鮮度](../configuration.md)、および別文書の [Echo Dot 利用の実現可能性評価](../echo-dot-bluetooth.md)を参照してください。
+
+## 直列接続の仮想バッテリー
+
+仮想バッテリーは直列接続された物理パックをまとめ、各パックの個別セルも表示します。電圧は加算されますが、直列の電流と Ah は加算されません。バンク全体の SOC には明示的に指定した上流センサーが必要で、各パックの SOC の平均値は使いません。この機能を含むリリースを選んでください。0.2.0-beta.1 には含まれていません。以下の詳細リファレンスは英語です。
+
+[Virtual battery guide](../virtual-batteries.md) · [Configuration examples](../../examples/README.md) · [Runbook](../runbook.md) · [Troubleshooting](../troubleshooting.md)

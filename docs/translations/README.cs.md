@@ -44,3 +44,9 @@ Vynechte `language` nebo použijte `language: auto`, aby se karta řídila jazyk
 Postupujte podle [návodu k nasazení ESPHome](../esphome-deployment.md) a [projektu firmwaru](https://github.com/victron-venus/esphome-jbd-bms-mqtt). Každý udržovaný profil projektu předpokládá **čtyři systémy BMS se čtyřmi články na každý BMS**. Nastavte adresy Bluetooth, Wi-Fi a broker MQTT soukromě a poté do HA přidejte integraci MQTT nebo ESPHome. Instalace této karty nenahraje firmware do ESP32 ani nevytvoří entity baterií.
 
 Chybějící údaje zůstávají označené jako chybějící. Karta vypočítá rozdíl mezi nejvyšším a nejnižším napětím článku pouze tehdy, když mají všechny nakonfigurované články platné hodnoty. Barvy představují prahy zobrazení, nikoli nastavení ochrany BMS. Uchované hodnoty MQTT ani připojení online nedokazují aktuálnost měření; podle potřeby nastavte platnost dat na straně zdroje. Viz [nastavení a aktuálnost dat](../configuration.md) a samostatné [posouzení možnosti využití Echo Dot](../echo-dot-bluetooth.md).
+
+## Virtuální baterie v sérii
+
+Virtuální baterie sdružuje fyzické bateriové bloky zapojené do série a zachovává zobrazení jednotlivých článků každého bloku. Napětí se sčítají; proud a kapacita v Ah se v sérii nesčítají. SOC celé sestavy vyžaduje výslovně určený zdrojový senzor a nikdy není průměrem SOC jednotlivých bloků. Zvolte vydání s touto funkcí; verze 0.2.0-beta.1 ji neobsahuje. Podrobné příručky níže jsou v angličtině.
+
+[Virtual battery guide](../virtual-batteries.md) · [Configuration examples](../../examples/README.md) · [Runbook](../runbook.md) · [Troubleshooting](../troubleshooting.md)

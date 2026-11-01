@@ -42,5 +42,21 @@
   "errorText": "แบตเตอรี่ {battery}: {field} ต้องเป็นข้อความ",
   "errorCell": "แบตเตอรี่ {battery}: เซลล์ {cell} ไม่ถูกต้อง",
   "errorDuplicate": "แบตเตอรี่ {battery}: มีเอนทิตีเซลล์ซ้ำ",
-  "errorAccent": "แบตเตอรี่ {battery}: ไม่รองรับสีเน้นนี้"
+  "errorAccent": "แบตเตอรี่ {battery}: ไม่รองรับสีเน้นนี้",
+  "virtualBattery": "แบตเตอรี่เสมือน",
+  "defaultVirtualBattery": "แบตเตอรี่เสมือน {number}",
+  "virtualCount": "แบตเตอรี่เสมือน: {count}",
+  "seriesMembers": "อนุกรม · แบตเตอรี่ {count} ลูก",
+  "voltageSum": "ผลรวมแรงดันแบตเตอรี่",
+  "estimatedPower": "กำลังไฟฟ้าโดยประมาณ · V × I",
+  "lowestSoc": "ประจุแบตเตอรี่ต่ำสุด",
+  "socRange": "ช่วงประจุแบตเตอรี่",
+  "nominalVoltage": "แรงดันไฟฟ้าระบุ",
+  "displayRange": "ช่วงแสดงแรงดันไฟฟ้า",
+  "seriesCells": "เซลล์ตลอดวงจรอนุกรม",
+  "errorLayout": "ใช้ batteries หรือ virtual_batteries อย่างใดอย่างหนึ่ง",
+  "errorVirtualBatteries": "กำหนด virtual_batteries เป็นกลุ่มอนุกรม 1–32 กลุ่ม แต่ละกลุ่มมีแบตเตอรี่ 1–32 ลูก",
+  "errorVoltageConfig": "nominal_voltage ต้องเป็นบวก และ voltage_range ต้องมีค่าจำกัดที่ min ≥ 0 และ max > min",
+  "errorSeriesDuplicate": "แต่ละวงจรอนุกรมต้องใช้เอนทิตีแรงดันแบตเตอรี่และเซลล์ที่ไม่ซ้ำกัน",
+  "errorSeriesField": "ฟิลด์แบตเตอรี่เสมือนไม่ถูกต้อง: {field}"
 }

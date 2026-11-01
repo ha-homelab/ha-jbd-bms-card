@@ -72,3 +72,9 @@ protection settings. Retained MQTT values and an online connection do not prove
 fresh measurements; enforce expiry upstream where required. See
 [configuration and freshness](../configuration.md) and the separate
 [Echo Dot feasibility assessment](../echo-dot-bluetooth.md).
+
+## Virtual batteries in series
+
+A virtual battery groups physical packs in series while preserving each pack’s individual cells. Voltages add; series current and Ah do not. Bank SOC needs an explicit upstream sensor and is never an average of member SOC. Choose a release that includes this feature; 0.2.0-beta.1 does not. The detailed references below are in English.
+
+[Virtual battery guide](../virtual-batteries.md) · [Configuration examples](../../examples/README.md) · [Runbook](../runbook.md) · [Troubleshooting](../troubleshooting.md)

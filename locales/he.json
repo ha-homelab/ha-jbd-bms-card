@@ -42,5 +42,21 @@
   "errorText": "סוללה {battery}: השדה {field} חייב להיות טקסט.",
   "errorCell": "סוללה {battery}: תא {cell} אינו תקין.",
   "errorDuplicate": "סוללה {battery}: ישות תא כפולה.",
-  "errorAccent": "סוללה {battery}: צבע ההדגשה אינו נתמך."
+  "errorAccent": "סוללה {battery}: צבע ההדגשה אינו נתמך.",
+  "virtualBattery": "סוללה וירטואלית",
+  "defaultVirtualBattery": "סוללה וירטואלית {number}",
+  "virtualCount": "סוללות וירטואליות: {count}",
+  "seriesMembers": "חיבור טורי · {count} סוללות",
+  "voltageSum": "סכום מתחי הסוללות",
+  "estimatedPower": "הספק משוער · V × I",
+  "lowestSoc": "טעינת הסוללה הנמוכה ביותר",
+  "socRange": "טווח טעינת הסוללות",
+  "nominalVoltage": "מתח נומינלי",
+  "displayRange": "טווח תצוגת מתח",
+  "seriesCells": "תאים בכל החיבור הטורי",
+  "errorLayout": "יש להשתמש ב-batteries או ב-virtual_batteries בלבד.",
+  "errorVirtualBatteries": "יש להגדיר virtual_batteries עם 1–32 קבוצות טוריות, שבכל אחת מהן 1–32 סוללות.",
+  "errorVoltageConfig": "nominal_voltage חייב להיות חיובי; voltage_range דורש ערכים סופיים עם min ≥ 0 ו-max > min.",
+  "errorSeriesDuplicate": "כל חיבור טורי חייב להשתמש בישויות נפרדות למתחי הסוללות ולתאים.",
+  "errorSeriesField": "שדה לא תקין בסוללה הווירטואלית: {field}."
 }

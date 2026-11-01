@@ -42,5 +42,21 @@
   "errorText": "Baterie {battery}: {field} musí být text.",
   "errorCell": "Baterie {battery}: neplatný článek {cell}.",
   "errorDuplicate": "Baterie {battery}: duplicitní entita článku.",
-  "errorAccent": "Baterie {battery}: nepodporovaná barevná varianta."
+  "errorAccent": "Baterie {battery}: nepodporovaná barevná varianta.",
+  "virtualBattery": "Virtuální baterie",
+  "defaultVirtualBattery": "Virtuální baterie {number}",
+  "virtualCount": "Virtuální baterie: {count}",
+  "seriesMembers": "Série · {count} baterií",
+  "voltageSum": "Součet napětí baterií",
+  "estimatedPower": "Odhadovaný výkon · V × I",
+  "lowestSoc": "Nejnižší nabití baterie",
+  "socRange": "Rozsah nabití baterií",
+  "nominalVoltage": "Jmenovité napětí",
+  "displayRange": "Rozsah zobrazení napětí",
+  "seriesCells": "Články celé série",
+  "errorLayout": "Použijte buď batteries, nebo virtual_batteries.",
+  "errorVirtualBatteries": "Definujte virtual_batteries s 1–32 sériemi, každou s 1–32 bateriemi.",
+  "errorVoltageConfig": "nominal_voltage musí být kladné; voltage_range vyžaduje konečné min ≥ 0 a max > min.",
+  "errorSeriesDuplicate": "Každá série musí mít jedinečné entity napětí baterií a článků.",
+  "errorSeriesField": "Neplatné pole virtuální baterie: {field}."
 }

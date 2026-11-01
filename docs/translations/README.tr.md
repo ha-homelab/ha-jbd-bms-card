@@ -44,3 +44,9 @@ Home Assistant profilinin dilini izlemek için `language` ayarını atlayın vey
 [ESPHome dağıtım kılavuzunu](../esphome-deployment.md) ve [aygıt yazılımı projesini](https://github.com/victron-venus/esphome-jbd-bms-mqtt) izleyin. Projede bakımı sürdürülen her profil, **her birinde dört hücre bulunan dört BMS** bekler. Bluetooth adreslerini, Wi-Fi ve MQTT aracısını bilgileri gizli tutarak yapılandırın, ardından HA’ya MQTT veya ESPHome entegrasyonunu ekleyin. Bu kartı kurmak ESP32’ye aygıt yazılımı yüklemez ve batarya varlıkları oluşturmaz.
 
 Eksik ölçümler eksik olarak kalır. Kart, en yüksek ve en düşük hücre gerilimi arasındaki farkı yalnızca yapılandırılmış tüm hücrelerin geçerli değerleri olduğunda hesaplar. Renkler görüntüleme eşikleridir; BMS koruma ayarları değildir. Saklanan MQTT değerleri ve çevrimiçi bağlantı, ölçümlerin güncel olduğunu kanıtlamaz; gerektiğinde veri kaynağında son kullanma süresi uygulayın. [Yapılandırma ve veri güncelliği](../configuration.md) ile ayrı [Echo Dot uygulanabilirlik değerlendirmesine](../echo-dot-bluetooth.md) bakın.
+
+## Seri sanal bataryalar
+
+Sanal batarya, seri bağlı fiziksel paketleri gruplar ve her paketin tek tek hücrelerini göstermeye devam eder. Gerilimler toplanır; seri bağlantıda akım ve Ah toplanmaz. Bankanın SOC değeri için açıkça atanmış bir kaynak sensörü gerekir; paketlerin SOC ortalaması hiçbir zaman kullanılmaz. Bu özelliği içeren bir sürüm seçin; 0.2.0-beta.1 bu özelliği içermez. Aşağıdaki ayrıntılı başvuru belgeleri İngilizcedir.
+
+[Virtual battery guide](../virtual-batteries.md) · [Configuration examples](../../examples/README.md) · [Runbook](../runbook.md) · [Troubleshooting](../troubleshooting.md)

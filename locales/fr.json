@@ -42,5 +42,21 @@
   "errorText": "Batterie {battery} : {field} doit être du texte.",
   "errorCell": "Batterie {battery} : cellule {cell} non valide.",
   "errorDuplicate": "Batterie {battery} : entité de cellule en double.",
-  "errorAccent": "Batterie {battery} : couleur d’accentuation non prise en charge."
+  "errorAccent": "Batterie {battery} : couleur d’accentuation non prise en charge.",
+  "virtualBattery": "Batterie virtuelle",
+  "defaultVirtualBattery": "Batterie virtuelle {number}",
+  "virtualCount": "Batteries virtuelles : {count}",
+  "seriesMembers": "Série · {count} batteries",
+  "voltageSum": "Somme des tensions des batteries",
+  "estimatedPower": "Puissance estimée · V × I",
+  "lowestSoc": "Charge minimale des batteries",
+  "socRange": "Plage de charge des batteries",
+  "nominalVoltage": "Tension nominale",
+  "displayRange": "Plage d’affichage de tension",
+  "seriesCells": "Cellules de toute la série",
+  "errorLayout": "Utilisez batteries ou virtual_batteries, pas les deux.",
+  "errorVirtualBatteries": "Définissez virtual_batteries avec 1–32 groupes en série, chacun contenant 1–32 batteries.",
+  "errorVoltageConfig": "nominal_voltage doit être positif ; voltage_range exige des valeurs finies avec min ≥ 0 et max > min.",
+  "errorSeriesDuplicate": "Chaque série doit utiliser des entités distinctes pour les tensions des batteries et les cellules.",
+  "errorSeriesField": "Champ de batterie virtuelle invalide : {field}."
 }

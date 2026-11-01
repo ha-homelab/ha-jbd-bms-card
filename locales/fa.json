@@ -42,5 +42,21 @@
   "errorText": "باتری {battery}: مقدار {field} باید متن باشد.",
   "errorCell": "باتری {battery}: سلول {cell} نامعتبر است.",
   "errorDuplicate": "باتری {battery}: موجودیت سلول تکراری است.",
-  "errorAccent": "باتری {battery}: رنگ تأکید پشتیبانی نمی‌شود."
+  "errorAccent": "باتری {battery}: رنگ تأکید پشتیبانی نمی‌شود.",
+  "virtualBattery": "باتری مجازی",
+  "defaultVirtualBattery": "باتری مجازی {number}",
+  "virtualCount": "باتری‌های مجازی: {count}",
+  "seriesMembers": "سری · {count} باتری",
+  "voltageSum": "مجموع ولتاژ باتری‌ها",
+  "estimatedPower": "توان تخمینی · V × I",
+  "lowestSoc": "کمترین شارژ باتری",
+  "socRange": "بازهٔ شارژ باتری‌ها",
+  "nominalVoltage": "ولتاژ نامی",
+  "displayRange": "بازهٔ نمایش ولتاژ",
+  "seriesCells": "سلول‌های کل سری",
+  "errorLayout": "فقط یکی از batteries یا virtual_batteries را استفاده کنید.",
+  "errorVirtualBatteries": "virtual_batteries را با 1–32 گروه سری تعریف کنید که هرکدام 1–32 باتری دارند.",
+  "errorVoltageConfig": "nominal_voltage باید مثبت باشد؛ voltage_range به مقادیر متناهی با min ≥ 0 و max > min نیاز دارد.",
+  "errorSeriesDuplicate": "هر سری باید از موجودیت‌های جداگانه برای ولتاژ باتری‌ها و سلول‌ها استفاده کند.",
+  "errorSeriesField": "فیلد نامعتبر باتری مجازی: {field}."
 }

@@ -42,5 +42,21 @@
   "errorText": "Bateria {battery}: {field} deve ser texto.",
   "errorCell": "Bateria {battery}: célula {cell} inválida.",
   "errorDuplicate": "Bateria {battery}: entidade de célula duplicada.",
-  "errorAccent": "Bateria {battery}: cor de destaque não suportada."
+  "errorAccent": "Bateria {battery}: cor de destaque não suportada.",
+  "virtualBattery": "Bateria virtual",
+  "defaultVirtualBattery": "Bateria virtual {number}",
+  "virtualCount": "Baterias virtuais: {count}",
+  "seriesMembers": "Série · {count} baterias",
+  "voltageSum": "Soma das tensões das baterias",
+  "estimatedPower": "Potência estimada · V × I",
+  "lowestSoc": "Menor carga de uma bateria",
+  "socRange": "Intervalo de carga das baterias",
+  "nominalVoltage": "Tensão nominal",
+  "displayRange": "Intervalo de exibição da tensão",
+  "seriesCells": "Células de toda a série",
+  "errorLayout": "Use batteries ou virtual_batteries, não ambos.",
+  "errorVirtualBatteries": "Defina virtual_batteries com 1–32 grupos em série, cada um contendo 1–32 baterias.",
+  "errorVoltageConfig": "nominal_voltage deve ser positivo; voltage_range exige valores finitos com min ≥ 0 e max > min.",
+  "errorSeriesDuplicate": "Cada série deve usar entidades distintas para as tensões das baterias e as células.",
+  "errorSeriesField": "Campo de bateria virtual inválido: {field}."
 }

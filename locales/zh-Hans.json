@@ -42,5 +42,21 @@
   "errorText": "电池 {battery}：{field} 必须为文本。",
   "errorCell": "电池 {battery}：单体 {cell} 无效。",
   "errorDuplicate": "电池 {battery}：单体实体重复。",
-  "errorAccent": "电池 {battery}：不支持此强调色。"
+  "errorAccent": "电池 {battery}：不支持此强调色。",
+  "virtualBattery": "虚拟电池",
+  "defaultVirtualBattery": "虚拟电池 {number}",
+  "virtualCount": "虚拟电池：{count}",
+  "seriesMembers": "串联 · {count} 组电池",
+  "voltageSum": "各电池电压之和",
+  "estimatedPower": "估算功率 · V × I",
+  "lowestSoc": "最低电池电量",
+  "socRange": "电池电量范围",
+  "nominalVoltage": "标称电压",
+  "displayRange": "电压显示范围",
+  "seriesCells": "整个串联组的电芯",
+  "errorLayout": "请仅使用 batteries 或 virtual_batteries。",
+  "errorVirtualBatteries": "请在 virtual_batteries 中配置1–32个串联组，每组包含1–32组电池。",
+  "errorVoltageConfig": "nominal_voltage 必须为正数；voltage_range 要求有限的 min ≥ 0 且 max > min。",
+  "errorSeriesDuplicate": "每个串联组必须使用不同的电池电压和电芯实体。",
+  "errorSeriesField": "虚拟电池字段无效：{field}。"
 }

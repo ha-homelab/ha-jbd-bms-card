@@ -48,3 +48,9 @@ Volg de ESPHome-installatiehandleiding en het firmwareproject. Elk onderhouden p
 Ontbrekende meetwaarden blijven ontbreken. Het celverschil wordt alleen berekend wanneer alle ingestelde cellen geldige waarden hebben. Kleuren zijn weergavedrempels en geen BMS-beveiligingsinstellingen. Bewaarde MQTT-waarden en een online verbinding bewijzen niet dat metingen actueel zijn; regel zo nodig vervaltijden bij de bron. De technische naslag en de Echo Dot-beoordeling zijn in het Engels.
 
 [Configuration](../configuration.md) · [Echo Dot](../echo-dot-bluetooth.md)
+
+## Virtuele batterijen in serie
+
+Een virtuele batterij groepeert fysieke accupakketten in serie en behoudt de weergave van elke afzonderlijke cel. Spanningen worden opgeteld; stroom en Ah worden in serie niet opgeteld. De SOC van de volledige bank vereist een expliciet toegewezen bronsensor en is nooit het gemiddelde van de afzonderlijke SOC-waarden. Kies een release met deze functie; 0.2.0-beta.1 bevat deze niet. De uitgebreide naslagdocumenten hieronder zijn in het Engels.
+
+[Virtual battery guide](../virtual-batteries.md) · [Configuration examples](../../examples/README.md) · [Runbook](../runbook.md) · [Troubleshooting](../troubleshooting.md)

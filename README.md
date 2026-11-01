@@ -1,29 +1,40 @@
 # JBD Battery & Cell Card
 
-A colorful, read-only Home Assistant card for battery packs and **every individual cell**. Charge rings, pack voltage, current, power, temperature, cell bars, and min/max/spread — in one responsive view.
+A colorful, read-only Home Assistant card for **virtual series batteries, their physical packs, and every individual cell**. One bank summary keeps the voltage total and source measurements above the pack-level charge rings, cell bars, and min/max/spread.
 
 Works with entities from [ESPHome JBD BMS MQTT](https://github.com/victron-venus/esphome-jbd-bms-mqtt), native ESPHome, or another integration exposing numeric battery sensors. **Victron, Cerbo GX, Venus OS, and `dbus-mqtt-battery` are not required.**
 
-- Multiple batteries and chains, with explicit entity mapping; no guessed IDs.
+- One, two, three, four or more physical packs per virtual series battery; multiple independent strings in one view.
+- Complete member-voltage sums, explicit upstream current/SOC, nominal-voltage labels and configurable display ranges. Series current and Ah are never added; member SOC is never averaged.
+- Backward-compatible flat pack layout, with explicit entity mapping; no guessed IDs.
 - Individual cell voltages in V or mV, normalized to volts; 1–64 cells per battery.
 - Home Assistant light/dark themes, mobile layout, and 24 languages selected automatically from the HA profile, with per-card overrides and English fallback.
 - Unknown or unavailable measurements stay missing; no invented zeroes or aggregate SOC.
 - Tap or keyboard-activate a value to open HA's more-info dialog. No device commands.
 - One dependency-free JavaScript module; no CDN, tracking, external requests, or build needed for installation.
 
-[Configuration and data semantics](docs/configuration.md) · [Languages and auto-detection](docs/i18n.md) · [ESPHome deployment without Victron](docs/esphome-deployment.md) · [HACS installation and publication](docs/hacs.md) · [Echo Dot Bluetooth assessment](docs/echo-dot-bluetooth.md)
+[Virtual batteries and series math](docs/virtual-batteries.md) · [Configuration and data semantics](docs/configuration.md) · [Examples](examples/README.md) · [Runbook](docs/runbook.md) · [Troubleshooting](docs/troubleshooting.md) · [Languages and auto-detection](docs/i18n.md) · [ESPHome deployment without Victron](docs/esphome-deployment.md) · [HACS installation and publication](docs/hacs.md) · [Echo Dot Bluetooth assessment](docs/echo-dot-bluetooth.md)
 
 **User guides:** [English](docs/translations/README.en.md) · [العربية](docs/translations/README.ar.md) · [বাংলা](docs/translations/README.bn.md) · [Čeština](docs/translations/README.cs.md) · [Deutsch](docs/translations/README.de.md) · [Español](docs/translations/README.es.md) · [فارسی](docs/translations/README.fa.md) · [Français](docs/translations/README.fr.md) · [עברית](docs/translations/README.he.md) · [हिन्दी](docs/translations/README.hi.md) · [Bahasa Indonesia](docs/translations/README.id.md) · [Italiano](docs/translations/README.it.md) · [日本語](docs/translations/README.ja.md) · [한국어](docs/translations/README.ko.md) · [Nederlands](docs/translations/README.nl.md) · [Polski](docs/translations/README.pl.md) · [Português](docs/translations/README.pt.md) · [Русский](docs/translations/README.ru.md) · [ไทย](docs/translations/README.th.md) · [Türkçe](docs/translations/README.tr.md) · [Українська](docs/translations/README.uk.md) · [Tiếng Việt](docs/translations/README.vi.md) · [简体中文](docs/translations/README.zh-Hans.md) · [繁體中文](docs/translations/README.zh-Hant.md).
 
 The [24 translated guides](docs/translations/README.md) cover installation, configuration, language selection, ESPHome deployment and measurement quality. Detailed technical references use English. The 24-language interface requires **0.2.0 or newer**; development documentation can describe code newer than the latest [published release](https://github.com/ha-homelab/ha-jbd-bms-card/releases).
 
+**Version note:** virtual series grouping is in development and requires a release that explicitly includes `virtual_batteries`. It is not present in 0.2.0-beta.1. The diagrams and examples describe the source on this branch.
+
 ## Preview
+
+![Virtual series battery architecture with four physical packs and sixteen cells](docs/images/virtual-series-architecture.svg)
+
+Four 4S LiFePO₄ packs make a **51.2 V nominal** virtual series battery (48 V class); one, two and three make 12.8, 25.6 and 38.4 V nominal. These are illustrative nominal values, not charge targets or a wiring plan. See [series math and limits](docs/virtual-batteries.md).
+
+The original flat layout remains available:
+
 
 ![Synthetic demo of six battery packs in the dark theme](docs/images/synthetic-demo-dark.png)
 
 The screenshot uses invented demo values, not live battery data. [Light theme preview](docs/images/synthetic-demo-light.png).
 
-Run `python3 -m http.server 8124` from this repository and open [the synthetic demo](http://localhost:8124/demo/). The demo includes low-charge, high-spread, and missing-cell fixtures. It is clearly marked as invented data and does not connect to Home Assistant.
+Run `python3 -m http.server 8124` from this repository and open [the synthetic demo](http://localhost:8124/demo/). The demo has selectable one/two/three/four/five-pack series, two independent strings, other cell counts/chemistries, upstream sensors, missing data and legacy flat-layout fixtures. [Visual previews and scenario URLs](docs/screenshots.md) describe reproducible captures. It is clearly marked as invented data and does not connect to Home Assistant.
 
 ## Install
 
@@ -51,36 +62,47 @@ Download the JavaScript from the intended published release and use that version
 
 ## Add a card
 
-Edit a dashboard, choose **Manual**, and use the configuration below. Replace **every entity ID** with the actual ID from **Developer Tools → States**. These are illustrative names, not a promise about ESPHome discovery IDs.
+Edit a dashboard, choose **Manual**, and replace every example entity ID with its actual value from **Developer Tools → States**. The example below groups two physical 4S packs into one 25.6 V nominal virtual battery (24 V class). It does not create new HA sensors or control a battery.
 
 ```yaml
 type: custom:ha-jbd-bms-card
 title: Battery room
 language: auto
-batteries:
-  - name: Battery 1
-    subtitle: Chain 1 · 4S LiFePO₄
-    soc: sensor.my_battery_soc
-    voltage: sensor.my_battery_voltage
-    current: sensor.my_battery_current
-    power: sensor.my_battery_power
-    temperature: sensor.my_battery_temperature
-    cells:
-      - sensor.my_battery_cell_1
-      - sensor.my_battery_cell_2
-      - sensor.my_battery_cell_3
-      - sensor.my_battery_cell_4
+virtual_batteries:
+  - name: Reserve bank
+    nominal_voltage: 25.6
+    batteries:
+      - name: Physical pack 1
+        nominal_voltage: 12.8
+        soc: sensor.my_bms_1_soc
+        voltage: sensor.my_bms_1_voltage
+        cells:
+          - sensor.my_bms_1_cell_1
+          - sensor.my_bms_1_cell_2
+          - sensor.my_bms_1_cell_3
+          - sensor.my_bms_1_cell_4
+      - name: Physical pack 2
+        nominal_voltage: 12.8
+        soc: sensor.my_bms_2_soc
+        voltage: sensor.my_bms_2_voltage
+        cells:
+          - sensor.my_bms_2_cell_1
+          - sensor.my_bms_2_cell_2
+          - sensor.my_bms_2_cell_3
+          - sensor.my_bms_2_cell_4
 ```
 
-Add more entries under `batteries` for the second chain or further batteries. The card automatically arranges them into columns according to the available width. For eight packs, a full-width **Panel** view is useful; the card also supports Sections and Masonry views. Card configuration uses YAML; the card picker supplies a placeholder configuration that must be edited.
+The summary sums all valid member voltages. It needs explicit group `current` and `soc` entities to show those bank values; it does not sum currents or invent a virtual SOC. Optional upstream bank voltage/power and per-pack current/power/temperature are supported. See [configuration and inheritance](docs/configuration.md), [four-pack 51.2 V example](examples/series-4-pack.yaml), [two independent strings](examples/two-independent-strings.yaml), and the full [example catalog](examples/README.md).
 
-Only `soc`, `voltage`, and a nonempty `cells` list are required per battery. Current, power and temperature are optional. Cell names, availability gating and display thresholds are documented in [configuration](docs/configuration.md).
+Existing configurations with top-level `batteries` continue to show the original flat layout. Use exactly one of top-level `batteries` and `virtual_batteries`. Moving an existing physical pack entry under a group's `batteries` preserves its entity IDs and settings. The card accepts 1–32 groups, 1–32 packs per group and 1–64 cells per pack; these are frontend limits, not hardware ratings or ESP32 BLE connection guarantees.
 
-Omit `language` or use `auto` to follow the HA profile. Use `language: en` to keep this card in English, or any supported language code for a fixed override. Regional tags are recognized; unsupported languages fall back to English. Names supplied in YAML stay exactly as written. Arabic, Persian and Hebrew use right-to-left layout. All translations are bundled in the same JavaScript file; see [language selection and contributions](docs/i18n.md).
+For several strings, a full-width **Panel** view is useful. Sections and Masonry views also work. Card configuration uses YAML; the picker supplies a placeholder that must be edited. Follow the [runbook](docs/runbook.md) for inventory, acceptance, updates and rollback.
+
+Omit `language` or use `auto` to follow the HA profile. Use `language: en` to keep the card in English, or another supported language code for a fixed override. Regional tags are recognized; unsupported languages fall back to English. YAML names stay exactly as written. Arabic, Persian and Hebrew use right-to-left layout. See [language selection](docs/i18n.md).
 
 ## Connect the battery sensors
 
-Deploy the [ESPHome JBD BMS MQTT firmware](https://github.com/victron-venus/esphome-jbd-bms-mqtt), connect its MQTT broker to HA, and select the resulting entities. The firmware also exposes sensors through its encrypted native ESPHome API. The maintained profiles each collect four BMS with four cells per BMS; changing that topology needs firmware work even though the card supports other cell counts. Follow the [deployment guide](docs/esphome-deployment.md) and upstream [standalone Home Assistant guide](https://github.com/victron-venus/esphome-jbd-bms-mqtt/blob/main/docs/standalone-home-assistant.md) for credentials, provisioning and sensor mapping. Installing the card alone does not create battery entities or flash hardware.
+Deploy the [ESPHome JBD BMS MQTT firmware](https://github.com/victron-venus/esphome-jbd-bms-mqtt), connect its MQTT broker to HA, and select the resulting entities. The firmware also exposes sensors through its encrypted native ESPHome API. The two maintained production profiles each collect four BMS with four cells per BMS. The card can display other topologies, but frontend support alone does not change collector/firmware capabilities; consult the firmware documentation for supported generated profiles and their telemetry compatibility. Follow the [deployment guide](docs/esphome-deployment.md) and upstream [standalone Home Assistant guide](https://github.com/victron-venus/esphome-jbd-bms-mqtt/blob/main/docs/standalone-home-assistant.md) for credentials, provisioning and sensor mapping. Installing the card alone does not create battery entities or flash hardware.
 
 ## What the colors mean
 
@@ -110,6 +132,6 @@ node scripts/check-package.mjs
 
 `build` verifies the version and copies the root module to `dist/`; the root module is the distributable. Tests exercise numeric validity, availability, complete-cell spread, safe rendering, keyboard navigation and focus, entity update filtering, localization, and multiple batteries. Documentation checks verify local links and coverage of every supported language. The GitHub Actions required check is **CI gate**, including official HACS validation and the [five-target browser/OS baseline](docs/browser-compatibility.md). See [releasing](RELEASING.md) before tagging or publishing.
 
-Validated in Home Assistant **2026.10.0** with eight batteries and 32 cells, desktop and a 320 px mobile viewport, including more-info interaction. The screenshot above remains synthetic.
+The previous flat layout was validated in Home Assistant **2026.10.0** with eight batteries and 32 cells, desktop and a 320 px mobile viewport, including more-info interaction. See [visual previews](docs/screenshots.md) for clearly labelled synthetic fixtures; release validation should record the exact card version and topology.
 
 Built against the [Home Assistant custom card API](https://contributors.home-assistant.io/frontend/custom-ui/card/). No custom HA integration or backend is needed. License: [MIT](LICENSE).
