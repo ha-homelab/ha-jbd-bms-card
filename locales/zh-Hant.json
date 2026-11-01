@@ -42,5 +42,21 @@
   "errorText": "電池 {battery}：{field} 必須為文字。",
   "errorCell": "電池 {battery}：電芯 {cell} 無效。",
   "errorDuplicate": "電池 {battery}：電芯實體重複。",
-  "errorAccent": "電池 {battery}：不支援此強調色。"
+  "errorAccent": "電池 {battery}：不支援此強調色。",
+  "virtualBattery": "虛擬電池",
+  "defaultVirtualBattery": "虛擬電池 {number}",
+  "virtualCount": "虛擬電池：{count}",
+  "seriesMembers": "串聯 · {count} 組電池",
+  "voltageSum": "各電池電壓之和",
+  "estimatedPower": "估算功率 · V × I",
+  "lowestSoc": "最低電池電量",
+  "socRange": "電池電量範圍",
+  "nominalVoltage": "標稱電壓",
+  "displayRange": "電壓顯示範圍",
+  "seriesCells": "整個串聯組的電芯",
+  "errorLayout": "請僅使用 batteries 或 virtual_batteries。",
+  "errorVirtualBatteries": "請在 virtual_batteries 中設定1–32個串聯組，每組包含1–32組電池。",
+  "errorVoltageConfig": "nominal_voltage 必須為正數；voltage_range 要求有限的 min ≥ 0 且 max > min。",
+  "errorSeriesDuplicate": "每個串聯組必須使用不同的電池電壓和電芯實體。",
+  "errorSeriesField": "虛擬電池欄位無效：{field}。"
 }

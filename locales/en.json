@@ -42,5 +42,21 @@
   "errorText": "Battery {battery}: {field} must be text.",
   "errorCell": "Battery {battery}: invalid cell {cell}.",
   "errorDuplicate": "Battery {battery}: duplicate cell entity.",
-  "errorAccent": "Battery {battery}: unsupported accent."
+  "errorAccent": "Battery {battery}: unsupported accent.",
+  "virtualBattery": "Virtual battery",
+  "defaultVirtualBattery": "Virtual battery {number}",
+  "virtualCount": "Virtual batteries: {count}",
+  "seriesMembers": "Series · {count} batteries",
+  "voltageSum": "Sum of member voltages",
+  "estimatedPower": "Estimated power · V × I",
+  "lowestSoc": "Lowest member charge",
+  "socRange": "Member charge range",
+  "nominalVoltage": "Nominal voltage",
+  "displayRange": "Voltage display range",
+  "seriesCells": "Cells across series",
+  "errorLayout": "Use either batteries or virtual_batteries.",
+  "errorVirtualBatteries": "Define virtual_batteries with 1–32 series groups, each containing 1–32 batteries.",
+  "errorVoltageConfig": "nominal_voltage must be positive; voltage_range requires finite min ≥ 0 and max > min.",
+  "errorSeriesDuplicate": "Each series must use distinct battery voltage and cell entities.",
+  "errorSeriesField": "Invalid virtual battery field: {field}."
 }

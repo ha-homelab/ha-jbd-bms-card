@@ -50,6 +50,33 @@
       document.body.replaceChildren(fixture.card);
       document.documentElement.classList.remove('dark');
     };
+    fixture.series = (counts = [1, 2, 3, 4]) => {
+      fixture.reset();
+      const states = {};
+      const virtual_batteries = counts.map((count, group) => {
+        const batteries = Array.from({length:count}, (_, member) => {
+          const prefix = `sensor.series_${group + 1}_${member + 1}_`;
+          const cellCount = group === 1 ? 8 : group === 2 ? 16 : 4;
+          const battery = {name:`Pack ${member + 1}`, soc:prefix+'soc', voltage:prefix+'voltage', nominal_voltage:cellCount*3.2, cells:[]};
+          states[battery.soc] = state(80 - member, '%');
+          states[battery.voltage] = state(cellCount*3.3*(member === 1 ? 1000 : 1), member === 1 ? 'mV' : 'V');
+          for(let cell=0;cell<cellCount;cell++) {
+            const entity=prefix+`cell_${cell + 1}`;
+            battery.cells.push(entity);states[entity]=state(3.3 + cell*0.001,'V');
+          }
+          return battery;
+        });
+        const prefix=`sensor.series_${group + 1}_`;
+        states[prefix+'current']=state(-2500,'mA');
+        states[prefix+'soc']=state(77,'%');
+        states[`binary_sensor.series_${group + 1}_online`]=state('on');
+        return {name:`Virtual series ${count}`, batteries, nominal_voltage:batteries[0].nominal_voltage*count,
+          current:prefix+'current', soc:prefix+'soc', availability:`binary_sensor.series_${group + 1}_online`};
+      });
+      fixture.config={type:'custom:ha-jbd-bms-card', virtual_batteries};
+      fixture.hass={...fixture.hass,states};
+      fixture.card.setConfig(fixture.config);fixture.card.hass=fixture.hass;
+    };
     fixture.update = (entity, value, unit) => {
       const previous = fixture.hass.states[entity];
       fixture.hass = {...fixture.hass, states:{...fixture.hass.states}};

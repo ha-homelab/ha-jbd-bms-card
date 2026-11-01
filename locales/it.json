@@ -42,5 +42,21 @@
   "errorText": "Batteria {battery}: {field} deve essere testo.",
   "errorCell": "Batteria {battery}: cella {cell} non valida.",
   "errorDuplicate": "Batteria {battery}: entità di cella duplicata.",
-  "errorAccent": "Batteria {battery}: colore di accento non supportato."
+  "errorAccent": "Batteria {battery}: colore di accento non supportato.",
+  "virtualBattery": "Batteria virtuale",
+  "defaultVirtualBattery": "Batteria virtuale {number}",
+  "virtualCount": "Batterie virtuali: {count}",
+  "seriesMembers": "Serie · {count} batterie",
+  "voltageSum": "Somma delle tensioni delle batterie",
+  "estimatedPower": "Potenza stimata · V × I",
+  "lowestSoc": "Carica minima delle batterie",
+  "socRange": "Intervallo di carica delle batterie",
+  "nominalVoltage": "Tensione nominale",
+  "displayRange": "Intervallo di visualizzazione della tensione",
+  "seriesCells": "Celle dell’intera serie",
+  "errorLayout": "Usa batteries oppure virtual_batteries, non entrambi.",
+  "errorVirtualBatteries": "Definisci virtual_batteries con 1–32 gruppi in serie, ciascuno contenente 1–32 batterie.",
+  "errorVoltageConfig": "nominal_voltage deve essere positivo; voltage_range richiede valori finiti con min ≥ 0 e max > min.",
+  "errorSeriesDuplicate": "Ogni serie deve usare entità distinte per le tensioni delle batterie e le celle.",
+  "errorSeriesField": "Campo della batteria virtuale non valido: {field}."
 }

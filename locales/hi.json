@@ -42,5 +42,21 @@
   "errorText": "बैटरी {battery}: {field} टेक्स्ट होना चाहिए।",
   "errorCell": "बैटरी {battery}: सेल {cell} अमान्य है।",
   "errorDuplicate": "बैटरी {battery}: सेल एंटिटी दोहराई गई है।",
-  "errorAccent": "बैटरी {battery}: यह हाइलाइट रंग समर्थित नहीं है।"
+  "errorAccent": "बैटरी {battery}: यह हाइलाइट रंग समर्थित नहीं है।",
+  "virtualBattery": "वर्चुअल बैटरी",
+  "defaultVirtualBattery": "वर्चुअल बैटरी {number}",
+  "virtualCount": "वर्चुअल बैटरियाँ: {count}",
+  "seriesMembers": "श्रेणीक्रम · {count} बैटरियाँ",
+  "voltageSum": "बैटरियों के वोल्टेज का योग",
+  "estimatedPower": "अनुमानित पावर · V × I",
+  "lowestSoc": "सबसे कम बैटरी चार्ज",
+  "socRange": "बैटरियों के चार्ज की सीमा",
+  "nominalVoltage": "नाममात्र वोल्टेज",
+  "displayRange": "वोल्टेज प्रदर्शन सीमा",
+  "seriesCells": "पूरे श्रेणीक्रम के सेल",
+  "errorLayout": "batteries या virtual_batteries में से एक का उपयोग करें।",
+  "errorVirtualBatteries": "virtual_batteries में 1–32 श्रेणीक्रम समूह दें, जिनमें से प्रत्येक में 1–32 बैटरियाँ हों।",
+  "errorVoltageConfig": "nominal_voltage धनात्मक होना चाहिए; voltage_range के लिए सीमित min ≥ 0 और max > min आवश्यक हैं।",
+  "errorSeriesDuplicate": "प्रत्येक श्रेणीक्रम में बैटरी वोल्टेज और सेल की एंटिटी अलग होनी चाहिए।",
+  "errorSeriesField": "वर्चुअल बैटरी का अमान्य फ़ील्ड: {field}।"
 }

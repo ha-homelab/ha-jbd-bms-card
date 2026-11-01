@@ -42,5 +42,21 @@
   "errorText": "Baterai {battery}: {field} harus berupa teks.",
   "errorCell": "Baterai {battery}: sel {cell} tidak valid.",
   "errorDuplicate": "Baterai {battery}: entitas sel duplikat.",
-  "errorAccent": "Baterai {battery}: warna aksen tidak didukung."
+  "errorAccent": "Baterai {battery}: warna aksen tidak didukung.",
+  "virtualBattery": "Baterai virtual",
+  "defaultVirtualBattery": "Baterai virtual {number}",
+  "virtualCount": "Baterai virtual: {count}",
+  "seriesMembers": "Seri · {count} baterai",
+  "voltageSum": "Jumlah tegangan baterai",
+  "estimatedPower": "Perkiraan daya · V × I",
+  "lowestSoc": "Daya tersisa baterai terendah",
+  "socRange": "Rentang daya tersisa baterai",
+  "nominalVoltage": "Tegangan nominal",
+  "displayRange": "Rentang tampilan tegangan",
+  "seriesCells": "Sel di seluruh rangkaian seri",
+  "errorLayout": "Gunakan batteries atau virtual_batteries, bukan keduanya.",
+  "errorVirtualBatteries": "Tentukan virtual_batteries dengan 1–32 grup seri, masing-masing berisi 1–32 baterai.",
+  "errorVoltageConfig": "nominal_voltage harus positif; voltage_range memerlukan nilai terbatas dengan min ≥ 0 dan max > min.",
+  "errorSeriesDuplicate": "Setiap rangkaian seri harus memakai entitas tegangan baterai dan sel yang berbeda.",
+  "errorSeriesField": "Kolom baterai virtual tidak valid: {field}."
 }

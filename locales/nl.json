@@ -42,5 +42,21 @@
   "errorText": "Batterij {battery}: {field} moet tekst zijn.",
   "errorCell": "Batterij {battery}: ongeldige cel {cell}.",
   "errorDuplicate": "Batterij {battery}: dubbele celentiteit.",
-  "errorAccent": "Batterij {battery}: niet-ondersteunde accentkleur."
+  "errorAccent": "Batterij {battery}: niet-ondersteunde accentkleur.",
+  "virtualBattery": "Virtuele batterij",
+  "defaultVirtualBattery": "Virtuele batterij {number}",
+  "virtualCount": "Virtuele batterijen: {count}",
+  "seriesMembers": "Serie · {count} batterijen",
+  "voltageSum": "Som van batterijspanningen",
+  "estimatedPower": "Geschat vermogen · V × I",
+  "lowestSoc": "Laagste batterijlading",
+  "socRange": "Laadbereik van de batterijen",
+  "nominalVoltage": "Nominale spanning",
+  "displayRange": "Weergavebereik van spanning",
+  "seriesCells": "Cellen van de hele serie",
+  "errorLayout": "Gebruik batteries of virtual_batteries, niet beide.",
+  "errorVirtualBatteries": "Definieer virtual_batteries met 1–32 seriegroepen, elk met 1–32 batterijen.",
+  "errorVoltageConfig": "nominal_voltage moet positief zijn; voltage_range vereist eindige waarden met min ≥ 0 en max > min.",
+  "errorSeriesDuplicate": "Elke serie moet unieke entiteiten voor batterijspanningen en cellen gebruiken.",
+  "errorSeriesField": "Ongeldig veld voor virtuele batterij: {field}."
 }

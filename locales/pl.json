@@ -42,5 +42,21 @@
   "errorText": "Akumulator {battery}: {field} musi być tekstem.",
   "errorCell": "Akumulator {battery}: nieprawidłowe ogniwo {cell}.",
   "errorDuplicate": "Akumulator {battery}: powtórzona encja ogniwa.",
-  "errorAccent": "Akumulator {battery}: nieobsługiwany kolor akcentu."
+  "errorAccent": "Akumulator {battery}: nieobsługiwany kolor akcentu.",
+  "virtualBattery": "Bateria wirtualna",
+  "defaultVirtualBattery": "Bateria wirtualna {number}",
+  "virtualCount": "Baterie wirtualne: {count}",
+  "seriesMembers": "Szereg · {count} baterii",
+  "voltageSum": "Suma napięć baterii",
+  "estimatedPower": "Szacowana moc · V × I",
+  "lowestSoc": "Najniższy poziom naładowania baterii",
+  "socRange": "Zakres naładowania baterii",
+  "nominalVoltage": "Napięcie znamionowe",
+  "displayRange": "Zakres wyświetlania napięcia",
+  "seriesCells": "Ogniwa całego szeregu",
+  "errorLayout": "Użyj batteries albo virtual_batteries.",
+  "errorVirtualBatteries": "Zdefiniuj virtual_batteries z 1–32 grupami szeregowymi, każda z 1–32 bateriami.",
+  "errorVoltageConfig": "nominal_voltage musi być dodatnie; voltage_range wymaga skończonych wartości min ≥ 0 i max > min.",
+  "errorSeriesDuplicate": "Każdy szereg musi używać odrębnych encji napięć baterii i ogniw.",
+  "errorSeriesField": "Nieprawidłowe pole baterii wirtualnej: {field}."
 }

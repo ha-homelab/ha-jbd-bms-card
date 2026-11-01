@@ -73,11 +73,11 @@ async function main() {
       await checkSideEffects();
       scenarios.push(name);
     }
-    async function assertLayout() {
+    async function assertLayout(expectedPacks = 8, expectedCells = 32) {
       const result = await card.evaluate(element => {
         const root = element.shadowRoot;
         const bounds = element.getBoundingClientRect();
-        const rects = [...root.querySelectorAll('.battery,.cells,.cell,.metrics,.hero')].map(node => {
+        const rects = [...root.querySelectorAll('.virtual-battery,.series-summary,.series-chain,.battery,.cells,.cell,.metrics,.hero')].map(node => {
           const rect = node.getBoundingClientRect();
           return {className:node.className, left:rect.left, right:rect.right, width:rect.width, height:rect.height, clipped:node.scrollWidth > node.clientWidth + 1};
         });
@@ -90,8 +90,8 @@ async function main() {
           overflow:rects.filter(rect => rect.left < bounds.left - 1 || rect.right > bounds.right + 1 || rect.width <= 0 || rect.height <= 0 || rect.clipped),
         };
       });
-      assert.equal(result.packs, 8);
-      assert.equal(result.cells, 32);
+      assert.equal(result.packs, expectedPacks);
+      assert.equal(result.cells, expectedCells);
       assert.ok(result.pageWidth <= result.viewport + 1, `Unexpected horizontal page overflow: ${JSON.stringify(result)}`);
       assert.ok(result.left >= -1 && result.right <= result.viewport + 1, 'Card fits the viewport');
       assert.deepEqual(result.overflow, [], 'Battery contents stay inside the card');
@@ -213,6 +213,60 @@ async function main() {
       }
       assert.equal(await entity('sensor.fixture_b1_current').locator('bdi').getAttribute('dir'), 'ltr');
       await page.screenshot({path:path.join(output, 'arabic-rtl.png'), fullPage:true, animations:'disabled'});
+    });
+    await scenario('one, two, three and four member series render mixed cell counts and voltage classes', async () => {
+      await page.evaluate(() => fixture.series());
+      assert.equal(await card.locator('.virtual-battery').count(), 4);
+      assert.deepEqual(await card.locator('.series-voltage .volts').allTextContents(), ['13.20V','52.80V','158.40V','52.80V']);
+      assert.equal(await packs.locator('h3').count(), 10);
+      assert.equal(await text(entity('sensor.series_4_current').locator('strong')), '-2.5');
+      assert.equal(await text(card.locator('.virtual-battery').nth(3).locator('.series-metrics .metric').nth(2).locator('strong')), '-132.0');
+      for (const width of [320, 1280]) {
+        await page.setViewportSize({width,height:900});
+        await assertLayout(10, 84);
+        await page.screenshot({path:path.join(output, `virtual-series-${width}.png`), fullPage:true, animations:'disabled'});
+      }
+    });
+    await scenario('missing series voltage never extrapolates and explicit missing source never falls back', async () => {
+      const summary=card.locator('.virtual-battery').nth(3).locator('.series-summary');
+      await page.evaluate(() => fixture.update('sensor.series_4_2_voltage','unavailable'));
+      assert.equal(await text(summary.locator('.series-voltage .volts')), '—V');
+      assert.equal(await text(summary.locator('.status')), 'Partial data');
+      await page.evaluate(() => {
+        fixture.series();
+        fixture.config.virtual_batteries[3].voltage='sensor.series_4_total_voltage';
+        fixture.card.setConfig(fixture.config);
+      });
+      assert.equal(await text(summary.locator('.series-voltage .volts')), '—V');
+      await page.evaluate(() => fixture.update('sensor.series_4_total_voltage',52800,'mV'));
+      assert.equal(await text(summary.locator('.series-voltage .volts')), '52.80V');
+      await entity('sensor.series_4_total_voltage').click();
+      assert.deepEqual(await page.evaluate(() => fixture.events), ['sensor.series_4_total_voltage']);
+    });
+    await scenario('missing member cells hide aggregate spread and group availability hides retained values', async () => {
+      await page.evaluate(() => {fixture.series();fixture.update('sensor.series_4_1_cell_1','unavailable');});
+      const group=card.locator('.virtual-battery').nth(3);
+      assert.equal(await text(group.locator('.series-stats .spread strong')), '—');
+      assert.equal(await text(group.locator('.series-stats .cell-head span')), '15/16 cells available');
+      await page.evaluate(() => fixture.update('binary_sensor.series_4_online','off'));
+      assert.equal(await text(group.locator('.series-summary .status')), 'Unavailable');
+      assert.equal(await text(group.locator('.series-voltage .volts')), '—V');
+      assert.equal(await group.locator('.cell.missing').count(), 16);
+      await page.evaluate(() => fixture.update('binary_sensor.series_4_online','on'));
+      assert.equal(await group.locator('.cell.missing').count(), 1);
+    });
+    await scenario('virtual series remains read-only, responsive and translated in RTL', async () => {
+      await page.evaluate(() => {fixture.series();fixture.language('ar');});
+      assert.equal(await card.getAttribute('dir'), 'rtl');
+      assert.equal(await packs.locator('h3').count(), 10);
+      for (const width of [320,1280]) {await page.setViewportSize({width,height:900});await assertLayout(10,84);}
+      await page.screenshot({path:path.join(output,'virtual-series-rtl.png'),fullPage:true,animations:'disabled'});
+    });
+    await scenario('five-member series has no four-pack ceiling or fixed 48 V scale', async () => {
+      await page.evaluate(() => fixture.series([5]));
+      assert.equal(await text(card.locator('.series-voltage .volts')), '66.00V');
+      assert.equal(await card.locator('.series-chain li').count(), 5);
+      await assertLayout(5,20);
     });
     await checkSideEffects();
     fs.writeFileSync(process.env.CI_BROWSER_EVIDENCE, JSON.stringify({

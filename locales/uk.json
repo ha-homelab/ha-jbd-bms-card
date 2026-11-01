@@ -42,5 +42,21 @@
   "errorText": "Батарея {battery}: {field} має бути текстом.",
   "errorCell": "Батарея {battery}: неприпустима комірка {cell}.",
   "errorDuplicate": "Батарея {battery}: повторювана сутність комірки.",
-  "errorAccent": "Батарея {battery}: непідтримуваний акцентний колір."
+  "errorAccent": "Батарея {battery}: непідтримуваний акцентний колір.",
+  "virtualBattery": "Віртуальна батарея",
+  "defaultVirtualBattery": "Віртуальна батарея {number}",
+  "virtualCount": "Віртуальні батареї: {count}",
+  "seriesMembers": "Послідовний ланцюг · батарей: {count}",
+  "voltageSum": "Сума напруг батарей",
+  "estimatedPower": "Розрахункова потужність · V × I",
+  "lowestSoc": "Найнижчий заряд батареї",
+  "socRange": "Діапазон заряду батарей",
+  "nominalVoltage": "Номінальна напруга",
+  "displayRange": "Діапазон відображення напруги",
+  "seriesCells": "Комірки всього ланцюга",
+  "errorLayout": "Використовуйте або batteries, або virtual_batteries.",
+  "errorVirtualBatteries": "Задайте virtual_batteries: 1–32 послідовні групи, кожна з 1–32 батарей.",
+  "errorVoltageConfig": "nominal_voltage має бути додатним; voltage_range потребує скінченних min ≥ 0 та max > min.",
+  "errorSeriesDuplicate": "У кожному ланцюзі сутності напруги батарей і комірок мають бути унікальними.",
+  "errorSeriesField": "Некоректне поле віртуальної батареї: {field}."
 }

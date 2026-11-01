@@ -42,5 +42,21 @@
   "errorText": "Bộ pin {battery}: {field} phải là văn bản.",
   "errorCell": "Bộ pin {battery}: cell {cell} không hợp lệ.",
   "errorDuplicate": "Bộ pin {battery}: thực thể cell bị trùng.",
-  "errorAccent": "Bộ pin {battery}: màu nhấn không được hỗ trợ."
+  "errorAccent": "Bộ pin {battery}: màu nhấn không được hỗ trợ.",
+  "virtualBattery": "Pin ảo",
+  "defaultVirtualBattery": "Pin ảo {number}",
+  "virtualCount": "Pin ảo: {count}",
+  "seriesMembers": "Nối tiếp · {count} bộ pin",
+  "voltageSum": "Tổng điện áp các bộ pin",
+  "estimatedPower": "Công suất ước tính · V × I",
+  "lowestSoc": "Mức sạc bộ pin thấp nhất",
+  "socRange": "Khoảng mức sạc các bộ pin",
+  "nominalVoltage": "Điện áp danh định",
+  "displayRange": "Khoảng hiển thị điện áp",
+  "seriesCells": "Các cell trong toàn bộ chuỗi",
+  "errorLayout": "Chỉ sử dụng batteries hoặc virtual_batteries.",
+  "errorVirtualBatteries": "Định nghĩa virtual_batteries với 1–32 nhóm nối tiếp, mỗi nhóm gồm 1–32 bộ pin.",
+  "errorVoltageConfig": "nominal_voltage phải dương; voltage_range cần các giá trị hữu hạn min ≥ 0 và max > min.",
+  "errorSeriesDuplicate": "Mỗi chuỗi phải dùng các thực thể điện áp bộ pin và cell riêng biệt.",
+  "errorSeriesField": "Trường pin ảo không hợp lệ: {field}."
 }

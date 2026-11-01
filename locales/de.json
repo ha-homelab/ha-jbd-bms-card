@@ -42,5 +42,21 @@
   "errorText": "Batterie {battery}: {field} muss Text sein.",
   "errorCell": "Batterie {battery}: Ungültige Zelle {cell}.",
   "errorDuplicate": "Batterie {battery}: Doppelte Zellentität.",
-  "errorAccent": "Batterie {battery}: Nicht unterstützte Akzentfarbe."
+  "errorAccent": "Batterie {battery}: Nicht unterstützte Akzentfarbe.",
+  "virtualBattery": "Virtuelle Batterie",
+  "defaultVirtualBattery": "Virtuelle Batterie {number}",
+  "virtualCount": "Virtuelle Batterien: {count}",
+  "seriesMembers": "Reihe · {count} Batterien",
+  "voltageSum": "Summe der Batteriespannungen",
+  "estimatedPower": "Geschätzte Leistung · V × I",
+  "lowestSoc": "Niedrigster Batterieladestand",
+  "socRange": "Ladestandsbereich der Batterien",
+  "nominalVoltage": "Nennspannung",
+  "displayRange": "Anzeigebereich der Spannung",
+  "seriesCells": "Zellen der gesamten Reihe",
+  "errorLayout": "Verwende entweder batteries oder virtual_batteries.",
+  "errorVirtualBatteries": "Definiere virtual_batteries mit 1–32 Reihengruppen mit jeweils 1–32 Batterien.",
+  "errorVoltageConfig": "nominal_voltage muss positiv sein; voltage_range benötigt endliche Werte mit min ≥ 0 und max > min.",
+  "errorSeriesDuplicate": "Jede Reihe muss unterschiedliche Entitäten für Batteriespannungen und Zellen verwenden.",
+  "errorSeriesField": "Ungültiges Feld der virtuellen Batterie: {field}."
 }

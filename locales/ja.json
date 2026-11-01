@@ -42,5 +42,21 @@
   "errorText": "バッテリー {battery}: {field} はテキストである必要があります。",
   "errorCell": "バッテリー {battery}: セル {cell} が無効です。",
   "errorDuplicate": "バッテリー {battery}: セルエンティティが重複しています。",
-  "errorAccent": "バッテリー {battery}: 対応していないアクセントカラーです。"
+  "errorAccent": "バッテリー {battery}: 対応していないアクセントカラーです。",
+  "virtualBattery": "仮想バッテリー",
+  "defaultVirtualBattery": "仮想バッテリー {number}",
+  "virtualCount": "仮想バッテリー：{count}",
+  "seriesMembers": "直列 · {count} 台のバッテリー",
+  "voltageSum": "各バッテリー電圧の合計",
+  "estimatedPower": "推定電力 · V × I",
+  "lowestSoc": "最も低いバッテリー残量",
+  "socRange": "バッテリー残量の範囲",
+  "nominalVoltage": "公称電圧",
+  "displayRange": "電圧の表示範囲",
+  "seriesCells": "直列全体のセル",
+  "errorLayout": "batteries または virtual_batteries のいずれかを使用してください。",
+  "errorVirtualBatteries": "virtual_batteries に1～32個の直列グループを定義し、各グループに1～32台のバッテリーを指定してください。",
+  "errorVoltageConfig": "nominal_voltage は正の値にしてください。voltage_range には有限値の min ≥ 0 と max > min が必要です。",
+  "errorSeriesDuplicate": "各直列グループではバッテリー電圧とセルのエンティティを重複させないでください。",
+  "errorSeriesField": "仮想バッテリーのフィールドが無効です：{field}。"
 }

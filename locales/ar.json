@@ -42,5 +42,21 @@
   "errorText": "البطارية {battery}: يجب أن يكون {field} نصًا.",
   "errorCell": "البطارية {battery}: الخلية {cell} غير صالحة.",
   "errorDuplicate": "البطارية {battery}: كيان خلية مكرر.",
-  "errorAccent": "البطارية {battery}: لون التمييز غير مدعوم."
+  "errorAccent": "البطارية {battery}: لون التمييز غير مدعوم.",
+  "virtualBattery": "بطارية افتراضية",
+  "defaultVirtualBattery": "بطارية افتراضية {number}",
+  "virtualCount": "البطاريات الافتراضية: {count}",
+  "seriesMembers": "توصيل تسلسلي · {count} بطاريات",
+  "voltageSum": "مجموع جهود البطاريات",
+  "estimatedPower": "القدرة التقديرية · V × I",
+  "lowestSoc": "أدنى شحن لبطارية",
+  "socRange": "نطاق شحن البطاريات",
+  "nominalVoltage": "الجهد الاسمي",
+  "displayRange": "نطاق عرض الجهد",
+  "seriesCells": "خلايا التوصيل التسلسلي",
+  "errorLayout": "استخدم batteries أو virtual_batteries فقط.",
+  "errorVirtualBatteries": "عرّف virtual_batteries مع 1–32 مجموعة تسلسلية، تحتوي كل منها على 1–32 بطارية.",
+  "errorVoltageConfig": "يجب أن تكون nominal_voltage موجبة؛ يتطلب voltage_range قيمًا منتهية مع min ≥ 0 وmax > min.",
+  "errorSeriesDuplicate": "يجب أن تستخدم كل سلسلة كيانات منفصلة لجهد البطاريات والخلايا.",
+  "errorSeriesField": "حقل بطارية افتراضية غير صالح: {field}."
 }

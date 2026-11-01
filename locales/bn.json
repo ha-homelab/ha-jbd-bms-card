@@ -42,5 +42,21 @@
   "errorText": "ব্যাটারি {battery}: {field} অবশ্যই টেক্সট হতে হবে।",
   "errorCell": "ব্যাটারি {battery}: সেল {cell} অবৈধ।",
   "errorDuplicate": "ব্যাটারি {battery}: একই সেল এনটিটি একাধিকবার আছে।",
-  "errorAccent": "ব্যাটারি {battery}: এই অ্যাকসেন্ট রং সমর্থিত নয়।"
+  "errorAccent": "ব্যাটারি {battery}: এই অ্যাকসেন্ট রং সমর্থিত নয়।",
+  "virtualBattery": "ভার্চুয়াল ব্যাটারি",
+  "defaultVirtualBattery": "ভার্চুয়াল ব্যাটারি {number}",
+  "virtualCount": "ভার্চুয়াল ব্যাটারি: {count}",
+  "seriesMembers": "সিরিজ · {count}টি ব্যাটারি",
+  "voltageSum": "ব্যাটারিগুলোর ভোল্টেজের যোগফল",
+  "estimatedPower": "আনুমানিক পাওয়ার · V × I",
+  "lowestSoc": "সর্বনিম্ন ব্যাটারি চার্জ",
+  "socRange": "ব্যাটারির চার্জের পরিসর",
+  "nominalVoltage": "নামমাত্র ভোল্টেজ",
+  "displayRange": "ভোল্টেজ প্রদর্শনের পরিসর",
+  "seriesCells": "সিরিজের সব সেল",
+  "errorLayout": "batteries অথবা virtual_batteries ব্যবহার করুন।",
+  "errorVirtualBatteries": "virtual_batteries-এ 1–32টি সিরিজ গ্রুপ দিন, প্রতিটিতে 1–32টি ব্যাটারি থাকবে।",
+  "errorVoltageConfig": "nominal_voltage অবশ্যই ধনাত্মক হবে; voltage_range-এর জন্য সসীম min ≥ 0 এবং max > min প্রয়োজন।",
+  "errorSeriesDuplicate": "প্রতিটি সিরিজে ব্যাটারি ভোল্টেজ এবং সেলের এনটিটি আলাদা হতে হবে।",
+  "errorSeriesField": "ভার্চুয়াল ব্যাটারির অবৈধ ফিল্ড: {field}।"
 }
