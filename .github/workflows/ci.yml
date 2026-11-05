@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   browser-compatibility:
-    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/typescript-ci.yml@94b1116449af128810b86f4c0c723602be17b372
+    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/typescript-ci.yml@94b1116449af128810b86f4c0c723602be17b372 # main
     with:
       node-version: '24'
       force-full: true
@@ -48,7 +48,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Validate Dashboard repository
-        uses: hacs/action@1ebf01c408f29afcb6406bd431bc98fd8cbb15aa # verified upstream main
+        uses: hacs/action@1ebf01c408f29afcb6406bd431bc98fd8cbb15aa # main; verified upstream main
         with:
           category: plugin
           comment: false
