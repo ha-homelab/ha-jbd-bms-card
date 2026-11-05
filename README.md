@@ -132,6 +132,8 @@ node scripts/check-package.mjs
 
 `build` verifies the version and copies the root module to `dist/`; the root module is the distributable. Tests exercise numeric validity, availability, complete-cell spread, safe rendering, keyboard navigation and focus, entity update filtering, localization, and multiple batteries. Documentation checks verify local links and coverage of every supported language. The GitHub Actions required check is **CI gate**, including official HACS validation and the [five-target browser/OS baseline](docs/browser-compatibility.md). See [releasing](RELEASING.md) before tagging or publishing.
 
+Pull requests from the maintained author allowlist use the same immutable shared approval workflow as `ha-desloc-card`. The caller only passes reviewer secrets to that workflow; it does not check out or execute pull request code. Approval is tied to the current head and base, and the required CI gate still controls merging. The organization manages `BOT_PAT` access for this repository.
+
 The previous flat layout was validated in Home Assistant **2026.10.0** with eight batteries and 32 cells, desktop and a 320 px mobile viewport, including more-info interaction. See [visual previews](docs/screenshots.md) for clearly labelled synthetic fixtures; release validation should record the exact card version and topology.
 
 Built against the [Home Assistant custom card API](https://contributors.home-assistant.io/frontend/custom-ui/card/). No custom HA integration or backend is needed. License: [MIT](LICENSE).
