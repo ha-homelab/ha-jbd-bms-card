@@ -10,7 +10,13 @@ concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  scope:
+    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/change-scope.yml@04d1a895fac608e5c972e49b127a1a792d7ad725 # main
+    with:
+      force-full: false
   browser-compatibility:
+    if: ${{ needs.scope.outputs.run == 'true' }}
+    needs: ["scope"]
     uses: victron-venus/venus-os-ci-toolkit/.github/workflows/typescript-ci.yml@94b1116449af128810b86f4c0c723602be17b372 # main
     with:
       node-version: '24'
@@ -42,6 +48,8 @@ jobs:
       - run: npm run build
       - name: Check HACS package
         run: node scripts/check-package.mjs
+      - name: Test documentation-scope gate contracts
+        run: python3 .github/workflow-tests/test_docs_scope.py
   hacs:
     name: HACS validation
     runs-on: ubuntu-latest
@@ -54,11 +62,36 @@ jobs:
           comment: false
   gate:
     name: CI gate
-    if: always()
-    needs: [checks, hacs, browser-compatibility]
+    if: ${{ always() }}
+    needs: ["browser-compatibility", "checks", "hacs", "scope"]
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
+      - name: Require the exact selected validation path
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        shell: python3 {0}
+        run: |
+          import json, os
+          results = json.loads(os.environ['RESULTS'])
+          expected = ['browser-compatibility', 'checks', 'hacs', 'scope']
+          always = ['checks', 'hacs', 'scope']
+          if set(results) != set(expected):
+              raise SystemExit('Validation job inventory differs')
+          scope = results['scope']
+          outputs = scope.get('outputs', {})
+          run = outputs.get('run')
+          if scope['result'] != 'success' or run not in {'true', 'false'}:
+              raise SystemExit('Change scope did not succeed')
+          if run == 'false' and outputs.get('reason') != 'documentation-only':
+              raise SystemExit('Unproven documentation-only scope')
+          failed = {}
+          for name, value in results.items():
+              wanted = 'success' if run == 'true' or name in always else 'skipped'
+              if value['result'] != wanted:
+                  failed[name] = {'actual': value['result'], 'expected': wanted}
+          if failed:
+              raise SystemExit(f'Validation did not pass: {failed}')
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
@@ -66,6 +99,7 @@ jobs:
         with:
           node-version: '24'
       - name: Require all checks
+        if: ${{ needs.scope.outputs.run == 'true' }}
         env:
           CHECKS_RESULT: ${{ needs.checks.result }}
           HACS_RESULT: ${{ needs.hacs.result }}
