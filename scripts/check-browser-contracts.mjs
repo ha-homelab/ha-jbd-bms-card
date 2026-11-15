@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { verifyBrowserCoverage } from "./check-browser-coverage.mjs";
 
 // renovate: toolkit-reference
-const TOOLKIT_REF = "f6ef8c9c4e949a242a7999e3b3b1bc50e5ff3077";
+const TOOLKIT_REF = "d42735efe245c1fa7ceba945a34b77d9d6b8176b";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 assert.match(read(".gitattributes"), /^\* text=auto eol=lf$/m, "Keep the same distributable bytes on Windows and Unix");
