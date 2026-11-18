@@ -2,7 +2,7 @@
 
 [🌐](README.md) · [English](../../README.md)
 
-Tarjeta de Home Assistant de solo lectura para carga, tensión de la batería, corriente, potencia, temperatura y tensión de cada celda. Utiliza entidades numéricas existentes; no requiere Victron ni Cerbo GX. Los 24 idiomas de la interfaz están disponibles a partir de la versión 0.2.0. Consulte las notas de publicación: la documentación de desarrollo puede describir código más reciente que la última versión publicada.
+Tarjeta de Home Assistant de solo lectura para carga, tensión de la batería, corriente, potencia, temperatura y tensión de cada celda. Utiliza entidades numéricas existentes; no requiere Victron ni Cerbo GX. Los 24 idiomas de la interfaz están disponibles a partir de la versión 0.2.0-beta.1. Consulte las notas de publicación: la documentación de desarrollo puede describir código más reciente que la última versión publicada.
 
 ## Instalación y configuración
 

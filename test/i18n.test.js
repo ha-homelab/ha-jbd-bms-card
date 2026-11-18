@@ -48,7 +48,12 @@ for(const {code,dir}of LOCALES){
     assert.equal(card.shadowRoot.querySelector('h2').textContent,translate(code,'defaultBattery',{number:1}));
     assert.equal(card.shadowRoot.querySelector('.footer').textContent,MESSAGES[code].source);
     assert.equal(card.shadowRoot.querySelector('.status').textContent,MESSAGES[code].available);
-    assert.equal(card.shadowRoot.querySelector('[data-entity="sensor.current"]').getAttribute('aria-label'),translate(code,'moreInfo',{name:MESSAGES[code].current}));
+    const current=card.shadowRoot.querySelector('[data-entity="sensor.current"]');
+    const value=current.querySelector('strong').textContent;
+    const unit=current.querySelector('.unit').textContent;
+    assert.equal(current.getAttribute('aria-label'),translate(code,'moreInfo',{
+      name:translate(code,'cellInfo',{name:MESSAGES[code].current,value:`${value} ${unit}`}),
+    }));
     assert.ok(card.shadowRoot.querySelectorAll('bdi[dir="ltr"]').length>=4);
     assert.throws(()=>card.setConfig({batteries:[]}),{message:MESSAGES[code].errorBatteries});
     const bad=config();bad.batteries[0].soc='invalid';

@@ -5,7 +5,7 @@
 A read-only Home Assistant card for charge, pack voltage, current, power,
 temperature, and individual cell voltages. It works with existing numeric
 entities; Victron and Cerbo GX are not required. Support for all 24 interface
-languages requires version 0.2.0 or newer. Check the published release notes;
+languages requires version 0.2.0-beta.1 or newer. Check the published release notes;
 development documentation can describe code newer than the latest release.
 
 ## Install and configure

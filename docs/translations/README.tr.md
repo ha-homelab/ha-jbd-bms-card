@@ -2,7 +2,7 @@
 
 [Diller](README.md) · [İngilizce tam belgeler](../../README.md)
 
-Şarj durumu, batarya paketi gerilimi, akım, güç, sıcaklık ve tek tek hücre gerilimlerini gösteren, salt okunur bir Home Assistant kartıdır. Mevcut sayısal varlıklarla çalışır; Victron veya Cerbo GX gerekmez. Arayüzdeki 24 dilin tamamı için 0.2.0 veya daha yeni bir sürüm gerekir. Yayımlanmış sürüm notlarını kontrol edin; geliştirme belgeleri son yayımlanan sürümden daha yeni kodu açıklayabilir.
+Şarj durumu, batarya paketi gerilimi, akım, güç, sıcaklık ve tek tek hücre gerilimlerini gösteren, salt okunur bir Home Assistant kartıdır. Mevcut sayısal varlıklarla çalışır; Victron veya Cerbo GX gerekmez. Arayüzdeki 24 dilin tamamı için 0.2.0-beta.1 veya daha yeni bir sürüm gerekir. Yayımlanmış sürüm notlarını kontrol edin; geliştirme belgeleri son yayımlanan sürümden daha yeni kodu açıklayabilir.
 
 ## Kurulum ve yapılandırma
 

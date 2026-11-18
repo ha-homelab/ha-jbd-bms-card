@@ -26,11 +26,13 @@ rewrite the maintained production YAML. Use the upstream command and
 validation procedure; configure real credentials and BMS addresses privately.
 
 **Telemetry compatibility matters:** generated profiles in which every BMS
-has four cells use schema 1. Profiles with any other cell count use schema 2
-for HA per-entity monitoring; the current `dbus-mqtt-battery` bridge rejects
-schema 2. Card support for those cells does not imply Victron control support.
-Firmware configuration/build validation is not BLE or battery commissioning.
-Consult the upstream guide for current validated versions and limitations.
+has four cells use MQTT schema 1. Profiles with any other cell count use
+schema 2. The card reads Home Assistant entities from either profile. A Cerbo
+using schema 2 needs a compatible bridge such as
+[dbus-mqtt-battery v2.8.0](https://github.com/victron-venus/dbus-mqtt-battery/releases/tag/v2.8.0)
+and an [explicit topology manifest](https://github.com/victron-venus/dbus-mqtt-battery/blob/d9dfc35dc2b48215f925134cf67e9891b4e3093a/docs/flexible-topology.md).
+Commission an equal-cell-count LiFePO₄ string with its explicit protection
+profile before enabling managed output. Mixed cell counts support observation.
 
 Keep `components/battery_telemetry.h` and
 `packages/mqtt-availability.yaml` beside the selected YAML in their original

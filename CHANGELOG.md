@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1
+
+- Keep voltage and optional measurements visible in narrow Home Assistant dashboard columns.
+- Include localized values in measurement button names. Skip missing entity IDs in keyboard navigation and keep details available for existing entities whose state is unavailable.
+- Align the configuration and release guides with stable series support.
+
 ## 0.3.0
 
 Stable release of virtual series batteries and the 24-language interface. Promotes the verified 0.3.0-rc.1 feature set; the JavaScript differs only in its version constant.

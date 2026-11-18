@@ -2,7 +2,7 @@
 
 [Jazyky](README.md) · [Úplná dokumentace v angličtině](../../README.md)
 
-Karta Home Assistant pouze pro čtení, která zobrazuje stav nabití, napětí baterie, proud, výkon, teplotu a napětí jednotlivých článků. Používá existující číselné entity; Victron ani Cerbo GX nejsou potřeba. Podpora všech 24 jazyků rozhraní vyžaduje verzi 0.2.0 nebo novější. Zkontrolujte poznámky k publikovanému vydání: vývojová dokumentace může popisovat novější kód, než obsahuje poslední vydaná verze.
+Karta Home Assistant pouze pro čtení, která zobrazuje stav nabití, napětí baterie, proud, výkon, teplotu a napětí jednotlivých článků. Používá existující číselné entity; Victron ani Cerbo GX nejsou potřeba. Podpora všech 24 jazyků rozhraní vyžaduje verzi 0.2.0-beta.1 nebo novější. Zkontrolujte poznámky k publikovanému vydání: vývojová dokumentace může popisovat novější kód, než obsahuje poslední vydaná verze.
 
 ## Instalace a nastavení
 
