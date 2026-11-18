@@ -77,7 +77,7 @@ async function main() {
       const result = await card.evaluate(element => {
         const root = element.shadowRoot;
         const bounds = element.getBoundingClientRect();
-        const rects = [...root.querySelectorAll('.virtual-battery,.series-summary,.series-chain,.battery,.cells,.cell,.metrics,.metric,.hero')].map(node => {
+        const rects = [...root.querySelectorAll('.header,.virtual-battery,.series-summary,.series-chain,.battery,.cells,.cell,.metrics,.metric,.hero')].map(node => {
           const rect = node.getBoundingClientRect();
           return {className:node.className, left:rect.left, right:rect.right, width:rect.width, height:rect.height, clipped:node.scrollWidth > node.clientWidth + 1};
         });
@@ -294,6 +294,31 @@ async function main() {
       const current=first.locator('[data-entity="sensor.series_1_current"]');
       assert.equal(await text(first.locator('.volts')), '211.20V');
       assert.equal(await current.getAttribute('aria-label'), 'Show details: Current: -120,300.0 mA');
+    });
+    await scenario('header badge fits narrow LTR and RTL columns and stays inline at normal width', async () => {
+      await page.setViewportSize({width:1280,height:900});
+      for (const language of ['en','ar']) {
+        for (const width of ['', '258px']) {
+          await page.evaluate(({language,width}) => {
+            fixture.reset();
+            fixture.language(language);
+            fixture.card.style.width=width;
+          }, {language,width});
+          const layout=await card.locator('.header').evaluate(header => {
+            const {left,right}=header.getBoundingClientRect();
+            const padding=getComputedStyle(header);
+            const brand=header.querySelector('.brand').getBoundingClientRect();
+            const badge=header.querySelector('.badge').getBoundingClientRect();
+            return {
+              contained:badge.width>0 && badge.left>=left+parseFloat(padding.paddingLeft)-1
+                && badge.right<=right-parseFloat(padding.paddingRight)+1,
+              wrapped:badge.top>=brand.bottom,
+            };
+          });
+          assert.deepEqual(layout, {contained:true,wrapped:Boolean(width)}, `${language} at ${width || 'normal width'}`);
+          await assertLayout();
+        }
+      }
     });
     await checkSideEffects();
     fs.writeFileSync(process.env.CI_BROWSER_EVIDENCE, JSON.stringify({
