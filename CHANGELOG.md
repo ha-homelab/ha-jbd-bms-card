@@ -2,7 +2,7 @@
 
 ## 0.3.1
 
-- Keep voltage and optional measurements visible in narrow Home Assistant dashboard columns.
+- Keep the header, voltage and optional measurements visible in narrow Home Assistant dashboard columns.
 - Include localized values in measurement button names. Skip missing entity IDs in keyboard navigation and keep details available for existing entities whose state is unavailable.
 - Align the configuration and release guides with stable series support.
 
