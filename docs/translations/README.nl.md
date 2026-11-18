@@ -2,7 +2,7 @@
 
 [🌐](README.md) · [English](../../README.md)
 
-Een alleen-lezen Home Assistant-kaart voor laadstatus, accuspanning, stroom, vermogen, temperatuur en de spanning van elke cel. De kaart gebruikt bestaande numerieke entiteiten; Victron en Cerbo GX zijn niet nodig. Alle 24 interfacetalen vereisen versie 0.2.0 of nieuwer. Controleer de release-opmerkingen: ontwikkelingsdocumentatie kan nieuwere code beschrijven dan de laatste publicatie.
+Een alleen-lezen Home Assistant-kaart voor laadstatus, accuspanning, stroom, vermogen, temperatuur en de spanning van elke cel. De kaart gebruikt bestaande numerieke entiteiten; Victron en Cerbo GX zijn niet nodig. Alle 24 interfacetalen vereisen versie 0.2.0-beta.1 of nieuwer. Controleer de release-opmerkingen: ontwikkelingsdocumentatie kan nieuwere code beschrijven dan de laatste publicatie.
 
 ## Installeren en instellen
 

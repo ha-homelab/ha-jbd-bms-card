@@ -2,7 +2,7 @@
 
 [Bahasa](README.md) · [Dokumentasi lengkap dalam bahasa Inggris](../../README.md)
 
-Kartu Home Assistant hanya-baca untuk menampilkan tingkat pengisian, tegangan paket baterai, arus, daya, suhu, dan tegangan setiap sel. Kartu memakai entitas numerik yang sudah ada; Victron dan Cerbo GX tidak diperlukan. Dukungan untuk seluruh 24 bahasa antarmuka memerlukan versi 0.2.0 atau lebih baru. Periksa catatan rilis yang diterbitkan; dokumentasi pengembangan dapat menjelaskan kode yang lebih baru daripada rilis terakhir.
+Kartu Home Assistant hanya-baca untuk menampilkan tingkat pengisian, tegangan paket baterai, arus, daya, suhu, dan tegangan setiap sel. Kartu memakai entitas numerik yang sudah ada; Victron dan Cerbo GX tidak diperlukan. Dukungan untuk seluruh 24 bahasa antarmuka memerlukan versi 0.2.0-beta.1 atau lebih baru. Periksa catatan rilis yang diterbitkan; dokumentasi pengembangan dapat menjelaskan kode yang lebih baru daripada rilis terakhir.
 
 ## Instalasi dan konfigurasi
 

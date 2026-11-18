@@ -2,7 +2,7 @@
 
 [Języki](README.md) · [Pełna dokumentacja po angielsku](../../README.md)
 
-Karta Home Assistant tylko do odczytu, wyświetlająca stan naładowania, napięcie pakietu, prąd, moc, temperaturę i napięcia poszczególnych ogniw. Korzysta z istniejących encji liczbowych; Victron ani Cerbo GX nie są wymagane. Obsługa wszystkich 24 języków interfejsu wymaga wersji 0.2.0 lub nowszej. Sprawdź informacje o opublikowanym wydaniu: dokumentacja rozwojowa może opisywać kod nowszy niż ostatnia wydana wersja.
+Karta Home Assistant tylko do odczytu, wyświetlająca stan naładowania, napięcie pakietu, prąd, moc, temperaturę i napięcia poszczególnych ogniw. Korzysta z istniejących encji liczbowych; Victron ani Cerbo GX nie są wymagane. Obsługa wszystkich 24 języków interfejsu wymaga wersji 0.2.0-beta.1 lub nowszej. Sprawdź informacje o opublikowanym wydaniu: dokumentacja rozwojowa może opisywać kod nowszy niż ostatnia wydana wersja.
 
 ## Instalacja i konfiguracja
 

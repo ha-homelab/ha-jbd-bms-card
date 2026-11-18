@@ -2,7 +2,7 @@
 
 [🌐](README.md) · [English](../../README.md)
 
-Eine schreibgeschützte Home-Assistant-Karte für Ladezustand, Batteriespannung, Strom, Leistung, Temperatur und einzelne Zellspannungen. Sie verwendet vorhandene numerische Entitäten; Victron und Cerbo GX sind nicht erforderlich. Alle 24 Oberflächensprachen stehen ab Version 0.2.0 zur Verfügung. Prüfen Sie die Versionshinweise: Die Entwicklungsdokumentation kann neuer als die veröffentlichte Version sein.
+Eine schreibgeschützte Home-Assistant-Karte für Ladezustand, Batteriespannung, Strom, Leistung, Temperatur und einzelne Zellspannungen. Sie verwendet vorhandene numerische Entitäten; Victron und Cerbo GX sind nicht erforderlich. Alle 24 Oberflächensprachen stehen ab Version 0.2.0-beta.1 zur Verfügung. Prüfen Sie die Versionshinweise: Die Entwicklungsdokumentation kann neuer als die veröffentlichte Version sein.
 
 ## Installieren und konfigurieren
 

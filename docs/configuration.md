@@ -1,6 +1,6 @@
 # Configuration and data semantics
 
-The [virtual battery guide](virtual-batteries.md) explains the physical model and calculation limits. All entity IDs below are illustrative; obtain actual IDs from **Developer Tools → States**. Virtual grouping is a development feature until a release explicitly includes it; 0.2.0-beta.1 supports the legacy flat list only.
+The [virtual battery guide](virtual-batteries.md) explains the physical model and calculation limits. All entity IDs below are illustrative; obtain actual IDs from **Developer Tools → States**. Virtual grouping is included in stable v0.3.0 and later.
 
 ## Top level
 
@@ -132,4 +132,4 @@ A valid explicit group sensor may coexist with missing physical-pack detail. Its
 
 ## Frontend behavior
 
-The card has no physical action buttons and makes no network requests. A click or Enter/Space on a source measurement dispatches Home Assistant's standard `hass-more-info` event. Derived values have no fabricated entity/history. Text is escaped before rendering. The card redraws when a referenced entity object or language changes and restores keyboard focus. It inherits Home Assistant theme colors.
+The card has no physical action buttons and makes no network requests. A click or Enter/Space on a measurement whose entity exists dispatches Home Assistant's standard `hass-more-info` event. Keyboard and screen-reader users can access the formatted value, unit and measurement name on that control. Derived values have no fabricated entity/history. Text is escaped before rendering. The card redraws when a referenced entity object or language changes and restores keyboard focus. It inherits Home Assistant theme colors.

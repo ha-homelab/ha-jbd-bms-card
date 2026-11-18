@@ -19,7 +19,8 @@ it does not claim Safari application, mobile device, or the shared toolkit's
 The [browser acceptance script](../scripts/browser-acceptance.cjs) serves a
 synthetic Home Assistant fixture and the unchanged distributable from an
 ephemeral loopback HTTP server. It checks eight batteries and 32 cells at
-desktop and 320-pixel widths in light/dark themes, missing and unavailable data,
+desktop and 320-pixel widths in light/dark themes, narrow dashboard columns on
+a wide display, missing and unavailable data,
 zero SOC, negative current, V/mV conversion, and incomplete cell statistics.
 Click, Enter and Space must open the correct more-info event; relevant updates
 must preserve keyboard focus, while unrelated updates must preserve the DOM.
@@ -32,8 +33,9 @@ the card, publish a release, or change production devices.
 
 ## Workflow and evidence
 
-The [CI workflow](../.github/workflows/ci.yml) calls the shared
-[`typescript-ci.yml` at `94b1116`](https://github.com/victron-venus/venus-os-ci-toolkit/blob/94b1116449af128810b86f4c0c723602be17b372/.github/workflows/typescript-ci.yml).
+The [CI workflow](../.github/workflows/ci.yml) pins the exact revision of the
+shared [`typescript-ci.yml`](https://github.com/victron-venus/venus-os-ci-toolkit/blob/main/.github/workflows/typescript-ci.yml)
+used for these checks.
 That revision includes the reviewed hosted Ubuntu dependency-installation fix.
 Its runtime verification records the actual OS, browser engine/version,
 Playwright version, source commit and workflow attempt. The application adds

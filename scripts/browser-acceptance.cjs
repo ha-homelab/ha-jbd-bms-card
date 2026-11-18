@@ -77,7 +77,7 @@ async function main() {
       const result = await card.evaluate(element => {
         const root = element.shadowRoot;
         const bounds = element.getBoundingClientRect();
-        const rects = [...root.querySelectorAll('.virtual-battery,.series-summary,.series-chain,.battery,.cells,.cell,.metrics,.hero')].map(node => {
+        const rects = [...root.querySelectorAll('.virtual-battery,.series-summary,.series-chain,.battery,.cells,.cell,.metrics,.metric,.hero')].map(node => {
           const rect = node.getBoundingClientRect();
           return {className:node.className, left:rect.left, right:rect.right, width:rect.width, height:rect.height, clipped:node.scrollWidth > node.clientWidth + 1};
         });
@@ -127,7 +127,8 @@ async function main() {
       await page.evaluate(() => fixture.update('sensor.fixture_b1_cell_3', null));
       assert.equal(await first.locator('.cell.missing').count(), 2);
       assert.equal(await text(first.locator('.cell-head span')), '2/4 cells available');
-      await entity('sensor.fixture_b1_cell_3').click();
+      assert.equal(await entity('sensor.fixture_b1_cell_3').count(), 0, 'An absent entity has no tab stop');
+      await first.locator('.cell').nth(2).click();
       assert.deepEqual(await page.evaluate(() => fixture.events), [], 'An absent entity has no more-info action');
     });
     await scenario('availability suppresses retained readings and recovers when online', async () => {
@@ -271,6 +272,28 @@ async function main() {
       assert.equal(await text(card.locator('.series-voltage .volts')), '66.00V');
       assert.equal(await card.locator('.series-chain li').count(), 5);
       await assertLayout(5,20);
+    });
+    await scenario('narrow dashboard columns fit flat and series cards on a wide screen', async () => {
+      await page.setViewportSize({width:1280,height:900});
+      await page.evaluate(() => {
+        fixture.reset();
+        fixture.card.style.width='258px';
+      });
+      await assertLayout();
+      assert.equal(await text(first.locator('.volts')), '13.22V');
+      await page.evaluate(() => {
+        fixture.series([2]);
+        fixture.card.style.width='320px';
+        const member=fixture.config.virtual_batteries[0].batteries[0];
+        member.current='sensor.series_1_current';
+        fixture.card.setConfig(fixture.config);
+        fixture.update(member.voltage, 211.20, 'V');
+        fixture.update(member.current, -120300, 'mA');
+      });
+      await assertLayout(2,8);
+      const current=first.locator('[data-entity="sensor.series_1_current"]');
+      assert.equal(await text(first.locator('.volts')), '211.20V');
+      assert.equal(await current.getAttribute('aria-label'), 'Show details: Current: -120,300.0 mA');
     });
     await checkSideEffects();
     fs.writeFileSync(process.env.CI_BROWSER_EVIDENCE, JSON.stringify({

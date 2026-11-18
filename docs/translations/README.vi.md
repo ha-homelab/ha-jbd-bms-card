@@ -2,7 +2,7 @@
 
 [Ngôn ngữ](README.md) · [Tài liệu đầy đủ bằng tiếng Anh](../../README.md)
 
-Thẻ Home Assistant chỉ đọc để hiển thị mức sạc, điện áp bộ pin, dòng điện, công suất, nhiệt độ và điện áp từng cell. Thẻ sử dụng các thực thể số đã có; không cần Victron hay Cerbo GX. Để hỗ trợ đủ 24 ngôn ngữ giao diện, cần phiên bản 0.2.0 trở lên. Hãy xem ghi chú của bản phát hành đã công bố; tài liệu phát triển có thể mô tả mã mới hơn bản phát hành gần nhất.
+Thẻ Home Assistant chỉ đọc để hiển thị mức sạc, điện áp bộ pin, dòng điện, công suất, nhiệt độ và điện áp từng cell. Thẻ sử dụng các thực thể số đã có; không cần Victron hay Cerbo GX. Để hỗ trợ đủ 24 ngôn ngữ giao diện, cần phiên bản 0.2.0-beta.1 trở lên. Hãy xem ghi chú của bản phát hành đã công bố; tài liệu phát triển có thể mô tả mã mới hơn bản phát hành gần nhất.
 
 ## Cài đặt và cấu hình
 

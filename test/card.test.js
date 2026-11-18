@@ -78,7 +78,10 @@ test('more-info is keyboard accessible and only dispatches existing entities',()
   const target=card.shadowRoot.querySelector('[data-entity="sensor.c1"]');
   target.dispatchEvent(new window.KeyboardEvent('keydown',{key:'Enter',bubbles:true}));
   assert.equal(opened,'sensor.c1');
-  opened=null;card.hass={states:{},language:'en'};card.shadowRoot.querySelector('[data-entity="sensor.c1"]').click();assert.equal(opened,null);
+  opened=null;card.hass={states:{},language:'en'};
+  const missing=card.shadowRoot.querySelector('.cell');
+  assert.equal(missing.querySelector('[role="button"],[tabindex]'),null);
+  missing.click();assert.equal(opened,null);
 });
 test('unrelated hass state updates do not redraw, but relevant changes and language do',()=>{
   const card=new HaJbdBmsCard();card.setConfig(config());const s=states();card.hass={states:s,language:'en'};

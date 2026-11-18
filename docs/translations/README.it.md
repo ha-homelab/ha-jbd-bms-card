@@ -2,7 +2,7 @@
 
 [🌐](README.md) · [English](../../README.md)
 
-Una scheda Home Assistant di sola lettura per carica, tensione del pacco, corrente, potenza, temperatura e tensioni delle singole celle. Utilizza entità numeriche esistenti; Victron e Cerbo GX non sono necessari. Le 24 lingue dell’interfaccia richiedono la versione 0.2.0 o successiva. Controllare le note di rilascio: la documentazione di sviluppo può descrivere codice più recente dell’ultima versione pubblicata.
+Una scheda Home Assistant di sola lettura per carica, tensione del pacco, corrente, potenza, temperatura e tensioni delle singole celle. Utilizza entità numeriche esistenti; Victron e Cerbo GX non sono necessari. Le 24 lingue dell’interfaccia richiedono la versione 0.2.0-beta.1 o successiva. Controllare le note di rilascio: la documentazione di sviluppo può descrivere codice più recente dell’ultima versione pubblicata.
 
 ## Installazione e configurazione
 

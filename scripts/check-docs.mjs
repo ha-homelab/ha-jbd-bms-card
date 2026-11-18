@@ -74,7 +74,7 @@ for (const { code } of locales) {
   assert.deepEqual([...new Set(linkTargets(source))].sort(), canonicalLinks, `${path}: keep all reference links aligned with English`);
   assert.equal(source.match(/```yaml\n([\s\S]*?)\n```/)?.[1], canonicalYaml, `${path}: configuration example differs from English`);
   for (const literal of [
-    `language: ${code}`, "language: auto", "0.2.0", "Dashboard",
+    `language: ${code}`, "language: auto", "0.2.0-beta.1", "Dashboard",
     "/config/www/", "/local/ha-jbd-bms-card.js", "/hacsfiles/ha-jbd-bms-card/ha-jbd-bms-card.js",
   ]) assert.ok(source.includes(literal), `${path}: missing technical literal ${literal}`);
 }

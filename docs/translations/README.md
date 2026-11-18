@@ -2,7 +2,7 @@
 
 English is the canonical language. Each guide covers HACS and manual installation, a working configuration example, automatic language selection and overrides, ESPHome deployment, and measurement-quality limits. These guides match all supported interface languages.
 
-Detailed technical references remain in English. This is a complete set of translated quickstarts, not a claim that every technical reference has been translated. All 24 interface languages require version **0.2.0 or newer**; check the [published release notes](https://github.com/ha-homelab/ha-jbd-bms-card/releases) before downloading.
+Detailed technical references remain in English. This is a complete set of translated quickstarts, not a claim that every technical reference has been translated. All 24 interface languages are included in stable releases from **v0.3.0**. Check the [published release notes](https://github.com/ha-homelab/ha-jbd-bms-card/releases) before downloading.
 
 - [English](README.en.md) — `en`
 - [العربية](README.ar.md) — `ar`
@@ -31,7 +31,7 @@ Detailed technical references remain in English. This is a complete set of trans
 
 ## Detailed references
 
-Each quickstart includes a localized introduction to virtual series batteries. The full topology reference, examples, runbook and troubleshooting remain English. This does not claim full technical-document translation or native-speaker review. Virtual grouping requires a release that includes it; 0.2.0-beta.1 predates that feature.
+Each quickstart includes a localized introduction to virtual series batteries. The full topology reference, examples, runbook and troubleshooting remain English. This does not claim full technical-document translation or native-speaker review. Virtual grouping is included in stable releases from v0.3.0.
 
 - [Virtual series battery model](../virtual-batteries.md)
 - [Configuration examples](../../examples/README.md)

@@ -2,7 +2,7 @@
 
 [🌐](README.md) · [English](../../README.md)
 
-Une carte Home Assistant en lecture seule pour la charge, la tension de la batterie, le courant, la puissance, la température et la tension de chaque cellule. Elle utilise les entités numériques existantes ; Victron et Cerbo GX ne sont pas nécessaires. Les 24 langues de l’interface nécessitent la version 0.2.0 ou ultérieure. Consultez les notes de version : cette documentation peut décrire du code plus récent que la dernière publication.
+Une carte Home Assistant en lecture seule pour la charge, la tension de la batterie, le courant, la puissance, la température et la tension de chaque cellule. Elle utilise les entités numériques existantes ; Victron et Cerbo GX ne sont pas nécessaires. Les 24 langues de l’interface nécessitent la version 0.2.0-beta.1 ou ultérieure. Consultez les notes de version : cette documentation peut décrire du code plus récent que la dernière publication.
 
 ## Installation et configuration
 
