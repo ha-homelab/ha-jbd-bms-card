@@ -11,13 +11,13 @@ concurrency:
   cancel-in-progress: true
 jobs:
   scope:
-    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/change-scope.yml@644806e26446879b677f69a2f9eff58850e8c11a # main
+    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/change-scope.yml@cdd076846c902abbdb5dfdb4ea251c402bd37ef3 # main
     with:
       force-full: false
   browser-compatibility:
     if: ${{ needs.scope.outputs.run == 'true' }}
     needs: ["scope"]
-    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/typescript-ci.yml@644806e26446879b677f69a2f9eff58850e8c11a # main
+    uses: victron-venus/venus-os-ci-toolkit/.github/workflows/typescript-ci.yml@cdd076846c902abbdb5dfdb4ea251c402bd37ef3 # main
     with:
       node-version: '24'
       force-full: true
